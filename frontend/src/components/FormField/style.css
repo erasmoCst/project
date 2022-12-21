@@ -1,0 +1,16 @@
+.field-label {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.label-float {
+    color: #000000;
+    font-weight: normal;
+    font-size: 14px;
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    padding: 0 6px;
+    background: #FFFFFF;
+    width: auto;
+}
