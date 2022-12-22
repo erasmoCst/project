@@ -9,6 +9,7 @@ export const Header = () => {
                 backgroundColor: "#00264B",
                 width: "100%",
                 padding: "1.2rem 0 1.2rem",
+                marginBottom: "20px",
             }}
         >
             <div

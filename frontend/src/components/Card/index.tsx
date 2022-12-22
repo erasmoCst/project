@@ -1,40 +1,62 @@
-import { Card as CardBootstrap, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Card as CardBootstrap, Button, Container, Row } from "react-bootstrap";
+import { FiTrash2 } from "react-icons/fi";
+import { FaRegEdit } from "react-icons/fa";
+import { BsCart3 } from "react-icons/bs";
+import { IconContext } from "react-icons/lib";
+import { Link, useNavigate } from "react-router-dom";
+import IconCart from "./../../images/icon-cart.svg";
+import IconEdit from "./../../images/icon-edit.svg";
+import IconTrash from "./../../images/icon-trash.svg";
 
 interface interfaceProps {
-    id: string,
-    img: string,
-    title: string,
-    price: string,
-    sale: string
+    id: string;
+    title: string;
+    brand: string;
+    price: string;
+    color: string;
+    imagemp: string;
 }
 
 export const Card = (props: interfaceProps) => {
-
     const navigate = useNavigate();
 
     return (
-        <CardBootstrap style={{ width: "18rem", margin: 10 }}>
-            <CardBootstrap.Img variant="top" src={props.img} />
-            <CardBootstrap.Body>
-                <CardBootstrap.Title>{props.title}</CardBootstrap.Title>
-                <CardBootstrap.Text style={{ textDecoration: "line-through" }}>
-                    {`R$ ${props.price}`}
-                </CardBootstrap.Text>
-                <CardBootstrap.Text
-                    style={{ fontWeight: "bold", color: "red" }}
+        <Container fluid>
+            <Row>
+                <div className="col-md-2">
+                    <img className="w-50" src={props.imagemp} />
+                </div>
+                <div className="col-md-7">
+                    <h3>{props.title}</h3>
+                    <p>{props.brand}</p>
+                    <p style={{ fontWeight: "bold", color: "#0F4C81" }}>
+                        R$ {props.price}
+                    </p>
+                    <p>Cor: {props.color}</p>
+                </div>
+
+                <div
+                    className="col-md-2"
+                    style={{
+                        verticalAlign: "center",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-around",
+                    }}
                 >
-                    {`R$ ${props.sale}`}
-                </CardBootstrap.Text>
-                <Button 
-                    variant="primary"
-                    className="btn-lg w-100"
-                    onClick={() => {
-                        navigate("/product/" + props.id)
-                    }}>
-                    Details
-                </Button>
-            </CardBootstrap.Body>
-        </CardBootstrap>
+                    <IconContext.Provider
+                        value={{ size: "2em", color: "##0F4C81" }}
+                    >
+                        <Link to="/cart">
+                            <img src={IconCart} alt="cart" />
+                        </Link>
+                        <Link to="/edit-produto">
+                            <img src={IconEdit} alt="edit" />
+                        </Link>
+                    </IconContext.Provider>
+                    <img src={IconTrash} alt="delete" />
+                </div>
+            </Row>
+        </Container>
     );
 };

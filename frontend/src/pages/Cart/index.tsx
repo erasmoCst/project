@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import { FiTrash2 } from "react-icons/fi";
+
 import { Footer } from "./../../components/Footer";
-import { FaTrash } from "react-icons/fa";
+import { Header } from "./../../components/Header";
 
 interface interfaceProducts {
     id: string;
@@ -31,9 +33,12 @@ export const Cart = () => {
     function formatBRL(value?: number | string | null) {
         if (value) {
             let valueUnformatted = parseFloat(value.toString());
-            return "R$ " + valueUnformatted.toLocaleString("pt-br", {
-                minimumFractionDigits: 2,
-            });
+            return (
+                "R$ " +
+                valueUnformatted.toLocaleString("pt-br", {
+                    minimumFractionDigits: 2,
+                })
+            );
         }
         return "R$0,00";
     }
@@ -62,6 +67,7 @@ export const Cart = () => {
 
     return (
         <>
+            <Header />
             <Container style={{ marginTop: 20, marginBottom: 40 }}>
                 <h2>Carrinho</h2>
 
@@ -80,7 +86,7 @@ export const Cart = () => {
                             <tr key={product.id}>
                                 <td width={600}>{product.nome}</td>
                                 <td>{product.qtd}</td>
-                                <td>{"R$ " +product.promo}</td>
+                                <td>{"R$ " + product.promo}</td>
                                 <td>{formatBRL(product.total)}</td>
                                 <td>
                                     <button
@@ -90,7 +96,7 @@ export const Cart = () => {
                                             removeProductCart(product.id);
                                         }}
                                     >
-                                        <FaTrash />
+                                        <FiTrash2 />
                                     </button>
                                 </td>
                             </tr>

@@ -1,30 +1,39 @@
 import React, { useState } from "react";
-import { Input, TreeSelect, Select } from "antd";
 import { Breadcrumb } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Input, Select } from "antd";
 import FormField from "../FormField";
+
 import "./style.css";
 
-const { Option } = Select;
+interface interfaceTitle {
+    title: string;
+}
 
-export const ProductForm = () => {
-    const [productName, setProductName] = useState("Câmera");
+export const  ProductForm = (props: interfaceTitle) => {
+    const [productName, setProductName] = useState(null);
     const [productBrand, setProductBrand] = useState("Intelbras");
     const [treeValue, setTreeValue] = useState(["0-0-0"]);
     const [selectValue, setSelectValue] = useState();
+
+    const today: string = new Date().toISOString().split("T")[0];
 
     return (
         <>
             <div style={{ textDecoration: "none", color: "#0F4C81" }}>
                 <Breadcrumb>
                     <Breadcrumb.Item
-                        href="/"
                         style={{ textDecoration: "none", color: "#0F4C81" }}
-                        
                     >
-                        Home
+                        <Link
+                            to="/"
+                            style={{ textDecoration: "none", color: "#0F4C81" }}
+                        >
+                            Home
+                        </Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item active style={{ color: "#0F4C81" }}>
-                        Adicionar Produto
+                        {props.title}
                     </Breadcrumb.Item>
                 </Breadcrumb>
             </div>
@@ -37,20 +46,23 @@ export const ProductForm = () => {
                         padding: "10px 0 20px",
                     }}
                 >
-                    Adicionar Produto
+                    {props.title}
                 </h3>
+
+                {/* PRODUCT NAME INPUT */}
                 <FormField
                     label="Nome do Produto"
                     name="productName"
-                    value={productName}
+                    value={null}
                 >
                     <Input
                         placeholder="Digite o nome do produto"
-                        value={productName}
                         style={{ width: "50%", marginBottom: "20px" }}
-                        onChange={(e) => setProductName(e.target.value)}
+                        onChange={(e) => setProductName(null)}
                     />
                 </FormField>
+
+                {/* PRODUCT BRAND INPUT */}
                 <FormField
                     label="Marca"
                     name="productBrand"
@@ -63,6 +75,8 @@ export const ProductForm = () => {
                         onChange={(e) => setProductBrand(e.target.value)}
                     />
                 </FormField>
+
+                {/* PRODUCT PRICE INPUT */}
                 <FormField label="Valor" name="productPrice" value="R$">
                     <Input
                         //value="R$"
@@ -71,11 +85,12 @@ export const ProductForm = () => {
                     />
                 </FormField>
 
+                {/* PRODUCT COLOR INPUT */}
                 <FormField label="Cor" name="productColor">
                     <Select
                         className="teste"
                         showSearch
-                        style={{ width: "20%" }}
+                        style={{ width: "20%", marginBottom: "20px" }}
                         placeholder="Selecione a cor"
                         options={[
                             {
@@ -93,34 +108,24 @@ export const ProductForm = () => {
                         ]}
                     ></Select>
                 </FormField>
+
+                {/* PRODUCT REGISTRATION DATE INPUT */}
+                <FormField label="Data de Cadastro" name="regDate">
+                    <Input
+                        type="date"
+                        defaultValue={today}
+                        style={{ width: "20%", marginBottom: "20px" }}
+                    />
+                </FormField>
+
+                <FormField>
+                    <Input
+                        accept="image/*"
+                        type="file"
+                        style={{ width: "20%", marginBottom: "20px" }}
+                    />
+                </FormField>
             </div>
-
-            {/* <Form>
-                <Form.Group style={{width: "50%"}}>
-                    <Form.Label>Nome do Produto</Form.Label>
-                    <Form.Control type="email" placeholder="Digite o nome do produto" />
-                </Form.Group>
-
-                <Form.Group style={{width: "50%"}}>
-                    <Form.Label>Marca</Form.Label>
-                    <Form.Control type="text" placeholder="Digite a marca do produto" />
-                </Form.Group>
-
-                <Form.Group style={{width: "25%"}}>
-                    <Form.Label>Valor</Form.Label>
-                    <Form.Control type="text" placeholder="R$0,00" />
-                </Form.Group>
-
-                <Form.Group style={{width: "20%"}}>
-                    <Form.Label>Cor</Form.Label>
-                    <Form.Control type="text" placeholder="Branco" />
-                </Form.Group>
-
-                <Form.Group style={{width: "20%"}}>
-                    <Form.Label>Data de Cadastro</Form.Label>
-                    <Form.Control type="date" placeholder="20/12/2022" />
-                </Form.Group>
-            </Form> */}
         </>
     );
 };

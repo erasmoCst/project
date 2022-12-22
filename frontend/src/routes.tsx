@@ -1,23 +1,19 @@
 import React from "react";
-import {
-    BrowserRouter,
-    Routes,
-    Route
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Cart } from "./pages/Cart";
 import { Home } from "./pages/Home";
-import { AddProduto } from "./pages/AddProduto";
+import { AddProduct } from "./pages/AddProduct";
+import { EditProduct } from "./pages/EditProduct";
 
-export const Rotas = () => {/*Cria "Rotas" e exporta*/
-    return(
-        <BrowserRouter>{/*ambiente*/}
-            <Routes>{/*Rotas*/}
-                <Route path="/" element={<Home/>}/>{/*Qual a rota --> '/' é a rota raiz(pagina principal)*/}
-                <Route path="add-product" element={<AddProduto/>}/>
-                <Route path="cart" element={<Cart/>}/>{/* Rota "Cart"*/}
+export const Rotas = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="add-produto" element={<AddProduct />} />
+                <Route path="edit-produto" element={<EditProduct />} />
+                <Route path="cart" element={<Cart />} />
             </Routes>
         </BrowserRouter>
-
-    )
-
-} 
+    );
+};
