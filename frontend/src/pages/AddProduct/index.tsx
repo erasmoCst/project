@@ -5,12 +5,14 @@ import { ProductForm } from "../../components/ProductForm";
 import { Footer } from "../../components/Footer";
 import { Link } from "react-router-dom";
 import { ProductButton } from "../../components/Button";
+import { PathBreadcrum } from "../../components/PathBreadcrumb";
 
 export const AddProduct = () => {
     return (
         <>
             <Header />
             <Container>
+            <PathBreadcrum path="Adicionar Produto" />
                 <ProductForm title="Adicionar Produto" />
                 <Link to="/">
                     <ProductButton title="ADICIONAR PRODUTO" to="/" />

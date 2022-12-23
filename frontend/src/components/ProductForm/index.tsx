@@ -20,24 +20,6 @@ export const  ProductForm = (props: interfaceTitle) => {
 
     return (
         <>
-            <div style={{ textDecoration: "none", color: "#0F4C81" }}>
-                <Breadcrumb>
-                    <Breadcrumb.Item
-                        style={{ textDecoration: "none", color: "#0F4C81" }}
-                    >
-                        <Link
-                            to="/"
-                            style={{ textDecoration: "none", color: "#0F4C81" }}
-                        >
-                            Home
-                        </Link>
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item active style={{ color: "#0F4C81" }}>
-                        {props.title}
-                    </Breadcrumb.Item>
-                </Breadcrumb>
-            </div>
-
             <div className="example">
                 <h3
                     style={{

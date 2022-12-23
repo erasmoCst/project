@@ -4,6 +4,10 @@ import { FiTrash2 } from "react-icons/fi";
 
 import { Footer } from "./../../components/Footer";
 import { Header } from "./../../components/Header";
+import { PathBreadcrum } from "../../components/PathBreadcrumb";
+import { Card } from "../../components/Card";
+import cameraIM3 from "./../../images/camera-im3.png";
+import { CartCard } from "../../components/CartCard";
 
 interface interfaceProducts {
     id: string;
@@ -21,6 +25,16 @@ interface interfaceProducts {
 export const Cart = () => {
     const [dataCart, setDataCart] = useState<Array<interfaceProducts>>([]);
     const [totalValue, setTotalValue] = useState<number>(0);
+
+    const [qtdy, setQtdy] = useState(0);
+
+    function adicionar() {
+        setQtdy(qtdy + 1);
+    }
+
+    function diminuir() {
+        if (qtdy != 0) setQtdy(qtdy - 1);
+    }
 
     function updateTotalValue(cart: Array<interfaceProducts>) {
         let total = 0;
@@ -69,59 +83,57 @@ export const Cart = () => {
         <>
             <Header />
             <Container style={{ marginTop: 20, marginBottom: 40 }}>
-                <h2>Carrinho</h2>
+                <PathBreadcrum path="Carrinho" />
+                <div className="row">
+                    <div className="col-8">
+                        <h3
+                            style={{
+                                fontWeight: "bold",
+                                color: "#353535",
+                                margin: "12px",
+                                padding: "10px 0 20px",
+                            }}
+                        >
+                            Carrinho
+                        </h3>
+                    </div>
+                    <div className="col-4">
+                        <h3
+                            style={{
+                                fontWeight: "bold",
+                                color: "#353535",
+                                margin: "12px",
+                                padding: "10px 0 20px",
+                            }}
+                        >
+                            Resumo do Pedido
+                        </h3>
+                    </div>
+                </div>
 
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <td width={600}>Product</td>
-                            <td>Qtd.</td>
-                            <td>Unit Value</td>
-                            <td>Total Value</td>
-                            <td>Actions</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dataCart.map((product) => (
-                            <tr key={product.id}>
-                                <td width={600}>{product.nome}</td>
-                                <td>{product.qtd}</td>
-                                <td>{"R$ " + product.promo}</td>
-                                <td>{formatBRL(product.total)}</td>
-                                <td>
-                                    <button
-                                        type="button"
-                                        className="btn btn-danger"
-                                        onClick={() => {
-                                            removeProductCart(product.id);
-                                        }}
-                                    >
-                                        <FiTrash2 />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td width={600}>Total:</td>
-                            <td></td>
-                            <td></td>
-                            <td>{formatBRL(totalValue)}</td>
-                            <td></td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div className="d-flex justify-content-between">
-                    <button type="button" className="btn btn-danger">
-                        Delete All Itens
-                    </button>
-                    <button type="button" className="btn btn-success">
-                        Buy Now
-                    </button>
+                <div className="row">
+                    <div
+                        className="col-8"
+                        style={{
+                            boxSizing: "border-box",
+                            border: "1px solid #B2B2B2",
+                            borderRadius: "7px",
+                        }}
+                    >
+                        <CartCard
+                            adicionar={adicionar}
+                            diminuir={diminuir}
+                            qtdy={qtdy}
+                            id="2"
+                            title="Câmera DS-2CD 2583G2-I"
+                            brand="Hikvision"
+                            price="645,00"
+                            color="Branco"
+                            imagemp={cameraIM3}
+                        ></CartCard>
+                    </div>
                 </div>
             </Container>
-
             <Footer />
         </>
     );

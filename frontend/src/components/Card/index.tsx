@@ -4,9 +4,9 @@ import { FaRegEdit } from "react-icons/fa";
 import { BsCart3 } from "react-icons/bs";
 import { IconContext } from "react-icons/lib";
 import { Link, useNavigate } from "react-router-dom";
-import IconCart from "./../../images/icon-cart.svg";
-import IconEdit from "./../../images/icon-edit.svg";
-import IconTrash from "./../../images/icon-trash.svg";
+import IconCart from "./../../icons/icon-cart.svg";
+import IconEdit from "./../../icons/icon-edit.svg";
+import IconTrash from "./../../icons/icon-trash.svg";
 
 interface interfaceProps {
     id: string;

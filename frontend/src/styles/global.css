@@ -1,4 +1,5 @@
 *{
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
+    font-family: Raleway;   
+    font-style: normal;
+    font-feature-settings: 'pnum' on, 'lnum' on;
 }

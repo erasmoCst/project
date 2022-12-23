@@ -36,13 +36,21 @@ export const Home = () => {
         <>
             <Header />
             <Container>
-                <div style={{ display: "flex", alignItems:"center"}}>
-                    <div>
+                <div className="row">
+                    <div className="col-8">
                         <h2 style={{ fontWeight: "bold", marginTop: "50px" }}>
                             Produtos
                         </h2>
                     </div>
-                    <div>
+                    <div
+                        className="col-4"
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            marginTop: "50px",
+                        }}
+                    >
                         <ProductButton
                             title="Adicionar Produto"
                             to="/add-produto"
