@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { Footer } from "./../../components/Footer";
-import { Card } from "./../../components/Card";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { Header } from "../../components/Header";
 import { FaRegEdit } from "react-icons/fa";
+import AddIcon from "./../../icons/icon-add.svg"
+
+import axios from "axios";
+
+import { Header } from "../../components/Header";
+import { Card } from "./../../components/Card";
+import { IconButton } from "./../../components/IconButton";
+import { ProductButton } from "../../components/ProductButton";
+import { Footer } from "./../../components/Footer";
+
 import cameraIM3 from "./../../images/camera-im3.png";
-import { ProductButton } from "../../components/Button";
+
 interface interfaceProducts {
     id: string;
     id_categoria: number;
@@ -51,10 +56,11 @@ export const Home = () => {
                             marginTop: "50px",
                         }}
                     >
-                        <ProductButton
+                        <IconButton
                             title="Adicionar Produto"
                             to="/add-produto"
-                        ></ProductButton>
+                            icon={AddIcon}
+                        ></IconButton>
                     </div>
                 </div>
 
@@ -67,7 +73,7 @@ export const Home = () => {
                     imagemp={cameraIM3}
                 ></Card>
             </Container>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 };

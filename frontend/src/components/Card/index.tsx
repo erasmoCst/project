@@ -48,6 +48,7 @@ export const Card = (props: interfaceProps) => {
                         value={{ size: "2em", color: "##0F4C81" }}
                     >
                         <Link to="/cart">
+                            
                             <img src={IconCart} alt="cart" />
                         </Link>
                         <Link to="/edit-produto">

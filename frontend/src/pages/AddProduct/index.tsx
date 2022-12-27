@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import { ProductForm } from "../../components/ProductForm";
 import { Footer } from "../../components/Footer";
 import { Link } from "react-router-dom";
-import { ProductButton } from "../../components/Button";
+import { ProductButton } from "../../components/ProductButton";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
 
 export const AddProduct = () => {
@@ -12,13 +12,16 @@ export const AddProduct = () => {
         <>
             <Header />
             <Container>
-            <PathBreadcrum path="Adicionar Produto" />
+                <PathBreadcrum path="Adicionar Produto" />
                 <ProductForm title="Adicionar Produto" />
                 <Link to="/">
-                    <ProductButton title="ADICIONAR PRODUTO" to="/" />
+                    <ProductButton
+                        title="ADICIONAR PRODUTO"
+                        to="/"
+                    />
                 </Link>
             </Container>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 };

@@ -11,9 +11,27 @@ interface interfaceCart {
     price: string;
     color: string;
     imagemp: string;
+    qtdy: any;
+    increaseQtdy: any;
+    decreaseQtdy: any;
 }
 
-export const CartCard = (props: any) => {
+export const CartCard = (props: interfaceCart) => {
+    let subtotal: string = formatBRL(parseFloat(props.price) * parseFloat(props.qtdy));
+
+    function formatBRL(value?: number | string | null) {
+        if (value) {
+            let valueUnformatted = parseFloat(value.toString());
+            return (
+                "R$ " +
+                valueUnformatted.toLocaleString("pt-br", {
+                    minimumFractionDigits: 2,
+                })
+            );
+        }
+        return "R$ 0,00";
+    }
+
     return (
         <Container fluid>
             <Row>
@@ -53,7 +71,7 @@ export const CartCard = (props: any) => {
                                 </p>
 
                                 <button
-                                    onClick={props.diminuir}
+                                    onClick={props.decreaseQtdy}
                                     style={{
                                         border: "none",
                                         backgroundColor: "#FFFFFF",
@@ -77,7 +95,7 @@ export const CartCard = (props: any) => {
                                 </div>
 
                                 <button
-                                    onClick={props.adicionar}
+                                    onClick={props.increaseQtdy}
                                     style={{
                                         border: "none",
                                         backgroundColor: "#FFFFFF",
@@ -93,7 +111,7 @@ export const CartCard = (props: any) => {
                                             justifyContent: "flex-end",
                                         }}
                                     >
-                                        R$ {props.price}
+                                        {subtotal}
                                     </p>
                                 </div>
                             </div>

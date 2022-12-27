@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 import { ProductForm } from "../../components/ProductForm";
 import { Footer } from "../../components/Footer";
 import { Link } from "react-router-dom";
-import { ProductButton } from "../../components/Button";
+import { ProductButton } from "../../components/ProductButton";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
 
 export const EditProduct = () => {
@@ -18,7 +18,7 @@ export const EditProduct = () => {
                     <ProductButton title="EDITAR PRODUTO" to="/" />
                 </Link>
             </Container>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 };

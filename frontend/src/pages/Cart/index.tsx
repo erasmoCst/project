@@ -8,6 +8,8 @@ import { PathBreadcrum } from "../../components/PathBreadcrumb";
 import { Card } from "../../components/Card";
 import cameraIM3 from "./../../images/camera-im3.png";
 import { CartCard } from "../../components/CartCard";
+import { CartCheckout } from "../../components/CartCheckout";
+import { Payment } from "../../components/Payment";
 
 interface interfaceProducts {
     id: string;
@@ -22,18 +24,28 @@ interface interfaceProducts {
     imagemp: string;
 }
 
-export const Cart = () => {
+export const Cart = (props: any) => {
+    let subtotal: string = formatBRL(
+        parseFloat(props.price) * parseFloat(props.qtdy)
+    );
+
     const [dataCart, setDataCart] = useState<Array<interfaceProducts>>([]);
     const [totalValue, setTotalValue] = useState<number>(0);
 
-    const [qtdy, setQtdy] = useState(0);
+    const [qtdy, setQtdy] = useState(1);
+    const [status, setStatus] = useState(true);
 
-    function adicionar() {
+    function changeStatus() {
+        setStatus(!status);
+        console.log({ status });
+    }
+
+    function increaseQtdy() {
         setQtdy(qtdy + 1);
     }
 
-    function diminuir() {
-        if (qtdy != 0) setQtdy(qtdy - 1);
+    function decreaseQtdy() {
+        if (qtdy > 1) setQtdy(qtdy - 1);
     }
 
     function updateTotalValue(cart: Array<interfaceProducts>) {
@@ -118,23 +130,41 @@ export const Cart = () => {
                             boxSizing: "border-box",
                             border: "1px solid #B2B2B2",
                             borderRadius: "7px",
+                            display: "flex",
+                            alignItems: "center",
                         }}
                     >
                         <CartCard
-                            adicionar={adicionar}
-                            diminuir={diminuir}
+                            increaseQtdy={increaseQtdy}
+                            decreaseQtdy={decreaseQtdy}
                             qtdy={qtdy}
                             id="2"
                             title="Câmera DS-2CD 2583G2-I"
                             brand="Hikvision"
-                            price="645,00"
+                            price="645"
                             color="Branco"
                             imagemp={cameraIM3}
                         ></CartCard>
                     </div>
+                    <div className="col-4">
+                        <CartCheckout
+                            qtdy={qtdy}
+                            price={645}
+                            subtotal="645"
+                            status={status}
+                            changeStatus={changeStatus}
+                        ></CartCheckout>
+                    </div>
+                </div>
+                <br></br>
+                <div className="row">
+                    <div className="col-8"></div>
+                    <div style={{visibility: status ? "visible" : "hidden"}} className="col-4" >
+                        <Payment />
+                    </div>
                 </div>
             </Container>
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 };

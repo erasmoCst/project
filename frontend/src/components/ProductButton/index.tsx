@@ -15,7 +15,7 @@ export const ProductButton = (props: interfaceButton) => {
                     variant="primary"
                     size="lg"
                     active
-                    style={{ marginBottom: "20px" }}
+                    style={{ fontWeight: "bold", width: "auto", backgroundColor:"#0F4C81", margin: "20px 0px 20px 0px" }}
                 >
                     {props.title}
                 </Button>{" "}
