@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Breadcrumb } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { Input, Select } from "antd";
 import FormField from "../FormField";
 
@@ -13,8 +11,8 @@ interface interfaceTitle {
 export const  ProductForm = (props: interfaceTitle) => {
     const [productName, setProductName] = useState(null);
     const [productBrand, setProductBrand] = useState("Intelbras");
-    const [treeValue, setTreeValue] = useState(["0-0-0"]);
-    const [selectValue, setSelectValue] = useState();
+/*     const [treeValue, setTreeValue] = useState(["0-0-0"]);
+    const [selectValue, setSelectValue] = useState(); */
 
     const today: string = new Date().toISOString().split("T")[0];
 

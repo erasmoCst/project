@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React/* , { useEffect, useState } */ from "react";
+/* import axios from "axios"; */
+
 import { Container } from "react-bootstrap";
-import { FaRegEdit } from "react-icons/fa";
 import AddIcon from "./../../icons/icon-add.svg"
 
-import axios from "axios";
+import { interfaceProducts } from "../../interfaces";
 
 import { Header } from "../../components/Header";
 import { Card } from "./../../components/Card";
-import { IconButton } from "./../../components/IconButton";
 import { ProductButton } from "../../components/ProductButton";
-import { Footer } from "./../../components/Footer";
+/* import { Footer } from "./../../components/Footer"; */
 
 import cameraIM3 from "./../../images/camera-im3.png";
 
-interface interfaceProducts {
-    id: string;
-    id_categoria: number;
-    nome: string;
-    valor: string;
-    promo: string;
-    imagemg: string;
-    imagemp: string;
-}
-
 export const Home = () => {
-    const [products, setProducts] = useState<Array<interfaceProducts>>([]);
+/*     const [products, setProducts] = useState<Array<interfaceProducts>>([]);
 
     useEffect(() => {
         axios
@@ -35,7 +25,7 @@ export const Home = () => {
             .catch((erro) => {
                 console.log(erro);
             });
-    }, []);
+    }, []); */
 
     return (
         <>
@@ -56,19 +46,19 @@ export const Home = () => {
                             marginTop: "50px",
                         }}
                     >
-                        <IconButton
+                        <ProductButton
                             title="Adicionar Produto"
                             to="/add-produto"
                             icon={AddIcon}
-                        ></IconButton>
+                        ></ProductButton>
                     </div>
                 </div>
 
                 <Card
-                    id="2"
+                    id={2}
                     title="Câmera DS-2CD 2583G2-I"
                     brand="Hikvision"
-                    price="645,00"
+                    price={645.00}
                     color="Branco"
                     imagemp={cameraIM3}
                 ></Card>

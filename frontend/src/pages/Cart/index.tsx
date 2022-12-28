@@ -1,94 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
-import { FiTrash2 } from "react-icons/fi";
 
-import { Footer } from "./../../components/Footer";
+import { interfacePayment, interfaceProducts } from "../../interfaces";
+import { formatBRL } from "../../functions";
+
 import { Header } from "./../../components/Header";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
-import { Card } from "../../components/Card";
-import cameraIM3 from "./../../images/camera-im3.png";
 import { CartCard } from "../../components/CartCard";
 import { CartCheckout } from "../../components/CartCheckout";
 import { Payment } from "../../components/Payment";
+/* import { Footer } from "./../../components/Footer"; */
 
-interface interfaceProducts {
-    id: string;
-    id_categoria: number;
-    nome: string;
-    valor: string;
-    promo: string;
-    promoNum: string;
-    qtd: string;
-    total: number;
-    imagemg: string;
-    imagemp: string;
-}
+import cameraIM3 from "./../../images/camera-im3.png";
 
-export const Cart = (props: any) => {
-    let subtotal: string = formatBRL(
-        parseFloat(props.price) * parseFloat(props.qtdy)
-    );
-
-    const [dataCart, setDataCart] = useState<Array<interfaceProducts>>([]);
-    const [totalValue, setTotalValue] = useState<number>(0);
-
+export const Cart = (props: interfaceProducts) => {
+    /*---------Q U A N T I D A D E-------------*/
     const [qtdy, setQtdy] = useState(1);
-    const [status, setStatus] = useState(true);
-
-    function changeStatus() {
-        setStatus(!status);
-        console.log({ status });
-    }
 
     function increaseQtdy() {
+        setStatus(false);
         setQtdy(qtdy + 1);
     }
 
     function decreaseQtdy() {
+        setStatus(false);
+
         if (qtdy > 1) setQtdy(qtdy - 1);
     }
+    /*------------------------------------------*/
 
-    function updateTotalValue(cart: Array<interfaceProducts>) {
-        let total = 0;
-        cart.forEach((product) => {
-            total = product.total + total;
-        });
-        setTotalValue(total);
+    /*--------B U T T O N   S T A T U S---------*/
+    const [status, setStatus] = useState(false);
+
+    function changeStatus() {
+        setStatus(!status);
+        console.log(status);
+    }
+    /*------------------------------------------*/
+
+    /* ------------V A L O R E S--------------- */
+    function subtotal(price: number, qtdy: number): number {
+        return price * qtdy;
+    }
+    function freight(price: number, qtdy: number): number {
+        return subtotal(price, qtdy) * 0.1;
     }
 
-    function formatBRL(value?: number | string | null) {
-        if (value) {
-            let valueUnformatted = parseFloat(value.toString());
-            return (
-                "R$ " +
-                valueUnformatted.toLocaleString("pt-br", {
-                    minimumFractionDigits: 2,
-                })
-            );
-        }
-        return "R$0,00";
-    }
+    const totalValue: number =
+        subtotal(props.price, qtdy) + freight(props.price, qtdy);
+    /*------------------------------------------*/
 
-    useEffect(() => {
-        let lsCart = localStorage.getItem("@u2:cart");
-        let cart: any = null;
+    const [statePagamento, setStatePagamento] = useState<interfacePayment>({
+        total: 0,
+        moneyQtdy: [0],
+        money: [0],
+        quantity: 0,
+    });
 
-        if (typeof lsCart === "string") {
-            cart = JSON.parse(lsCart);
-        }
-
-        if (cart) {
-            setDataCart(cart);
-            updateTotalValue(cart);
-        }
-    }, []);
-
-    function removeProductCart(id: string) {
-        let cart = dataCart.filter((product) => product.id !== id);
-
-        localStorage.setItem("@u2:cart", JSON.stringify(cart));
-        setDataCart(cart);
-        updateTotalValue(cart);
+    function changeStatePagamento(pgto: interfacePayment): void {
+        setStatePagamento(pgto);
     }
 
     return (
@@ -135,32 +105,38 @@ export const Cart = (props: any) => {
                         }}
                     >
                         <CartCard
+                            id={props.id}
+                            title={props.title}
+                            brand={props.brand}
+                            price={props.price}
+                            color={props.color}
+                            imagemp={props.imagemp}
+                            qtdy={qtdy}
                             increaseQtdy={increaseQtdy}
                             decreaseQtdy={decreaseQtdy}
-                            qtdy={qtdy}
-                            id="2"
-                            title="Câmera DS-2CD 2583G2-I"
-                            brand="Hikvision"
-                            price="645"
-                            color="Branco"
-                            imagemp={cameraIM3}
                         ></CartCard>
                     </div>
                     <div className="col-4">
                         <CartCheckout
+                            price={props.price}
                             qtdy={qtdy}
-                            price={645}
-                            subtotal="645"
                             status={status}
                             changeStatus={changeStatus}
+                            subtotal={subtotal}
+                            freight={freight}
+                            totalValue={totalValue}
+                            changeStatePagamento={changeStatePagamento}
                         ></CartCheckout>
                     </div>
                 </div>
                 <br></br>
                 <div className="row">
                     <div className="col-8"></div>
-                    <div style={{visibility: status ? "visible" : "hidden"}} className="col-4" >
-                        <Payment />
+                    <div
+                        style={{ visibility: status ? "visible" : "hidden" }}
+                        className="col-4"
+                    >
+                        <Payment propStatePagamento={statePagamento} />
                     </div>
                 </div>
             </Container>

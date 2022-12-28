@@ -1,10 +1,12 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import AddIcon from "./../../icons/icon-add.svg";
 
 interface interfaceButton {
     title: string;
     to: string;
+    icon: string | null;
 }
 
 export const ProductButton = (props: interfaceButton) => {
@@ -15,9 +17,21 @@ export const ProductButton = (props: interfaceButton) => {
                     variant="primary"
                     size="lg"
                     active
-                    style={{ fontWeight: "bold", width: "auto", backgroundColor:"#0F4C81", margin: "20px 0px 20px 0px" }}
+                    style={{
+                        fontWeight: "bold",
+                        backgroundColor: "#0F4C81",
+                        margin: "20px 0px 20px 0px",
+                    }}
                 >
-                    {props.title}
+                    {props?.icon && (
+                        <img
+                            src={props.icon}
+                            alt="add-product"
+                            style={{ marginRight: "0.8rem" }}
+                        />
+                    )}
+
+                    {`${props.title}`}
                 </Button>{" "}
             </Link>
         </>

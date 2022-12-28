@@ -20,10 +20,6 @@
     top: 16px;
 }
 
-.breadcrumb-item + .breadcrumb-item::before {
-    content: var(--bs-breadcrumb-divider, ">") !important;
-}
-
 .teste{
     text-decoration: none;
     color: #0F4C81;
