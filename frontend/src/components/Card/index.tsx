@@ -14,35 +14,60 @@ import IconTrash from "./../../icons/icon-trash.svg";
 export const Card = (props: interfaceProducts) => {
     return (
         <Container fluid>
-            <Row>
-                <div className="col-md-2">
+            <Row style={{ marginTop: "3.5em", marginBottom: "3.5em" }}>
+                <div className="col-md-2" style={{ textAlign: "center" }}>
                     <img className="w-50" src={props.imagemp} />
                 </div>
-                <div className="col-md-7">
-                    <h3>{props.title}</h3>
-                    <p>{props.brand}</p>
-                    <p style={{ fontWeight: "bold", color: "#0F4C81" }}>
+                <div className="col-md-6">
+                    <p style={{ margin: "0", fontWeight: "bold" }}>
+                        {props.title}
+                    </p>
+                    <p
+                        style={{
+                            margin: "0",
+                            fontSize: "90%",
+                            fontWeight: "normal",
+                        }}
+                    >
+                        {props.brand}
+                    </p>
+                    <p
+                        style={{
+                            margin: "0",
+                            fontSize: "150%",
+                            fontWeight: "bold",
+                            color: "#0F4C81",
+                        }}
+                    >
                         {formatBRL(props.price)}
                     </p>
-                    <p>Cor: {props.color}</p>
+                    <p
+                        style={{
+                            margin: "0",
+                            fontSize: "90%",
+                            fontWeight: "normal",
+                        }}
+                    >
+                        Cor: {props.color}
+                    </p>
                 </div>
 
                 <div
-                    className="col-md-2"
+                    className="col-md-4"
                     style={{
                         verticalAlign: "center",
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "space-around",
+                        justifyContent: "space-evenly",
                     }}
                 >
                     <IconContext.Provider
-                        value={{ size: "2em", color: "##0F4C81" }}
+                        value={{ size: "2em", color: "#0F4C81" }}
                     >
-                        <Link to="/cart">
+                        <Link to={"/cart/" + props.id}>
                             <img src={IconCart} alt="cart" />
                         </Link>
-                        <Link to="/edit-produto">
+                        <Link to={"/edit-produto/" + props.id}>
                             <img src={IconEdit} alt="edit" />
                         </Link>
                     </IconContext.Provider>

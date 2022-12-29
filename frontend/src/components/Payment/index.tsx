@@ -12,7 +12,7 @@ interface interfaceProps {
 export const Payment = (props: interfaceProps) => {
     function moneyTxt(money: number, moneyQtdy: number): string {
         if (money >= 2 && moneyQtdy > 1) return "cédulas";
-        else if (money >= 2 && moneyQtdy == 1) return "cédula";
+        else if (money >= 2 && moneyQtdy === 1) return "cédula";
         else if (money < 1 && moneyQtdy > 1) return "moedas";
         return "moeda";
     }

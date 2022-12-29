@@ -18,5 +18,5 @@ server.use(middlewares);
 server.use(router);
 
 server.listen(3001, () => {
-    console.log("JSON Server Succesful Start");
+    console.log("JSON Server Succesfully Start");
 });

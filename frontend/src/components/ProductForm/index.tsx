@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import { Input, Select } from "antd";
-import FormField from "../FormField";
-
+import React from "react";
 import "./style.css";
 
-interface interfaceTitle {
-    title: string;
+import { formatBRL } from "../../functions";
+
+interface interfaceForm {
+    formTitle: string;
+    id?: number;
+    date?: Date;
+    title?: string;
+    brand?: string;
+    price?: number;
+    color?: string;
+    imagemp?: string;
 }
 
-export const  ProductForm = (props: interfaceTitle) => {
-    const [productName, setProductName] = useState(null);
-    const [productBrand, setProductBrand] = useState("Intelbras");
-/*     const [treeValue, setTreeValue] = useState(["0-0-0"]);
-    const [selectValue, setSelectValue] = useState(); */
-
+export const ProductForm = (props: interfaceForm) => {
     const today: string = new Date().toISOString().split("T")[0];
 
     return (
@@ -26,85 +27,100 @@ export const  ProductForm = (props: interfaceTitle) => {
                         padding: "10px 0 20px",
                     }}
                 >
-                    {props.title}
+                    {props.formTitle}
                 </h3>
 
                 {/* PRODUCT NAME INPUT */}
-                <FormField
+                {/* <FormField
                     label="Nome do Produto"
-                    name="productName"
-                    value={null}
-                >
-                    <Input
-                        placeholder="Digite o nome do produto"
-                        style={{ width: "50%", marginBottom: "20px" }}
-                        onChange={(e) => setProductName(null)}
-                    />
-                </FormField>
+                    placeHolder="Digite o nome do produto"
+                    value={props.title}
+                    class="lg"
+                ></FormField> */}
 
                 {/* PRODUCT BRAND INPUT */}
-                <FormField
+                {/* <FormField
                     label="Marca"
-                    name="productBrand"
-                    value={productBrand}
-                >
-                    <Input
-                        placeholder="Digite a marca do produto"
-                        value={productBrand}
-                        style={{ width: "50%", marginBottom: "20px" }}
-                        onChange={(e) => setProductBrand(e.target.value)}
-                    />
-                </FormField>
+                    placeHolder="Digite a marca do produto"
+                    value={props.brand}
+                    class="lg"
+                ></FormField> */}
 
-                {/* PRODUCT PRICE INPUT */}
-                <FormField label="Valor" name="productPrice" value="R$">
-                    <Input
-                        //value="R$"
-                        placeholder="R$ 000,00"
-                        style={{ width: "25%", marginBottom: "20px" }}
+                {/* PRODUCT NAME INPUT */}
+                <div className="field-label">
+                    <label className="form-label">Nome do produto</label>
+                    <input
+                        type="text"
+                        style={{ width: "50%" }}
+                        placeholder="Digite o nome do produto"
+                        defaultValue={props.title}
                     />
-                </FormField>
+                </div>
+
+                {/* PRODUCT BRAND INPUT */}
+                <div className="field-label">
+                    <label className="form-label">Marca</label>
+                    <input
+                        type="text"
+                        style={{ width: "50%" }}
+                        placeholder="Digite a marca do produto"
+                        defaultValue={props.brand}
+                    />
+                </div>
+
+                {/* PRODUCT VALUE INPUT */}
+                <div className="field-label" style={{ position: "relative" }}>
+                    <label className="form-label">Valor</label>
+                    <input
+                        inputMode="numeric"
+                        style={{ width: "25%", paddingLeft: "2.5em" }}
+                        placeholder="000,00"
+                        readOnly={false}
+                        defaultValue={props.price}
+                    />
+                    <span className="unit">R$ </span>
+                </div>
 
                 {/* PRODUCT COLOR INPUT */}
-                <FormField label="Cor" name="productColor">
-                    <Select
-                        className="teste"
-                        showSearch
-                        style={{ width: "20%", marginBottom: "20px" }}
-                        placeholder="Selecione a cor"
-                        options={[
-                            {
-                                value: "white",
-                                label: "Branco",
-                            },
-                            {
-                                value: "gray",
-                                label: "Cinza",
-                            },
-                            {
-                                value: "black",
-                                label: "Preto",
-                            },
-                        ]}
-                    ></Select>
-                </FormField>
+                <div className="field-label">
+                    <label className="form-label">Cor</label>
+                    <select id="color" name="color" style={{ width: "20%" }}>
+                        <option value="white">Branco</option>
+                        <option value="gray">Cinza</option>
+                        <option value="black">Preto</option>
+                    </select>
+                </div>
 
-                {/* PRODUCT REGISTRATION DATE INPUT */}
-                <FormField label="Data de Cadastro" name="regDate">
-                    <Input
+                {/* PRODUCT DATE INPUT */}
+                <div className="field-label">
+                    <label className="form-label">Data de Cadastro</label>
+                    <input
                         type="date"
+                        style={{ width: "20%" }}
+                        placeholder="Digite o nome do produto"
                         defaultValue={today}
-                        style={{ width: "20%", marginBottom: "20px" }}
                     />
-                </FormField>
+                </div>
 
+                {/* PRODUCT IMAGES INPUT */}
+                <div className="field-label">
+                    <label className="form-label">Adicionar Imagens</label>
+                    <input
+                        id="images"
+                        name="images"
+                        type="file"
+                        accept="image/*"
+                        style={{ width: "20%" }}
+                    />
+                </div>
+                {/*
                 <FormField>
                     <Input
                         accept="image/*"
                         type="file"
                         style={{ width: "20%", marginBottom: "20px" }}
                     />
-                </FormField>
+                </FormField> */}
             </div>
         </>
     );

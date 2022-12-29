@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import AddIcon from "./../../icons/icon-add.svg";
 
 interface interfaceButton {
     title: string;
@@ -20,7 +19,7 @@ export const ProductButton = (props: interfaceButton) => {
                     style={{
                         fontWeight: "bold",
                         backgroundColor: "#0F4C81",
-                        margin: "20px 0px 20px 0px",
+                        /* margin: "20px 0px 20px 0px", */
                     }}
                 >
                     {props?.icon && (

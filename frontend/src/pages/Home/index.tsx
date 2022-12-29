@@ -1,8 +1,8 @@
-import React/* , { useEffect, useState } */ from "react";
-/* import axios from "axios"; */
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import { Container } from "react-bootstrap";
-import AddIcon from "./../../icons/icon-add.svg"
+import AddIcon from "./../../icons/icon-add.svg";
 
 import { interfaceProducts } from "../../interfaces";
 
@@ -11,10 +11,8 @@ import { Card } from "./../../components/Card";
 import { ProductButton } from "../../components/ProductButton";
 /* import { Footer } from "./../../components/Footer"; */
 
-import cameraIM3 from "./../../images/camera-im3.png";
-
 export const Home = () => {
-/*     const [products, setProducts] = useState<Array<interfaceProducts>>([]);
+    const [products, setProducts] = useState<Array<interfaceProducts>>([]);
 
     useEffect(() => {
         axios
@@ -25,25 +23,29 @@ export const Home = () => {
             .catch((erro) => {
                 console.log(erro);
             });
-    }, []); */
+    }, []);
 
     return (
         <>
             <Header />
             <Container>
-                <div className="row">
-                    <div className="col-8">
-                        <h2 style={{ fontWeight: "bold", marginTop: "50px" }}>
+                <div className="row" style={{marginTop:"3em"}}>
+                    <div
+                        className="col-md-2"
+                        //style={{ display: "flex", alignItems: "center" }}
+                    >
+                        <h2 style={{marginLeft:"2em", textAlign:"right", fontWeight: "bold"}}>
                             Produtos
                         </h2>
                     </div>
+                    <div className="col-md-6"></div>
                     <div
                         className="col-4"
                         style={{
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            marginTop: "50px",
+                            /* marginTop: "50px", */
                         }}
                     >
                         <ProductButton
@@ -53,15 +55,20 @@ export const Home = () => {
                         ></ProductButton>
                     </div>
                 </div>
-
-                <Card
-                    id={2}
-                    title="Câmera DS-2CD 2583G2-I"
-                    brand="Hikvision"
-                    price={645.00}
-                    color="Branco"
-                    imagemp={cameraIM3}
-                ></Card>
+                {products.map((product) => (
+                    <Card
+                        key={product.id}
+                        id={product.id}
+                        title={product.title}
+                        brand={product.brand}
+                        price={product.price}
+                        color={product.color}
+                        imagemp={
+                            "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
+                            product.imagemp
+                        }
+                    ></Card>
+                ))}
             </Container>
             {/* <Footer /> */}
         </>

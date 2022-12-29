@@ -10,6 +10,7 @@ import { FullSizeButton } from "../FullSizeButton";
 
 /* import { ModalFrete } from "../ModalFrete"; */
 import IconInfo from "./../../icons/icon-info.svg";
+
 interface interfaceProps {
     qtdy: number;
     price: number;
@@ -19,6 +20,8 @@ interface interfaceProps {
     subtotal: (price: number, qtdy: number) => number;
     freight: (price: number, qtdy: number) => number;
     changeStatePagamento: (pgto: interfacePayment) => void;
+    paymentCalc: () => void;
+    //pgto: interfacePayment;
 }
 
 export const CartCheckout = (props: interfaceProps) => {
@@ -148,18 +151,21 @@ export const CartCheckout = (props: interfaceProps) => {
                                     </div>
                                 </Container>
                             </Container>
-                        </div>
-                        <div>
-                            <FullSizeButton
-                                title="PAGAR"
-                                to=""
-                                price={props.totalValue}
-                                status={props.status}
-                                changeStatus={props.changeStatus}
-                                changeStatePagamento={
-                                    props.changeStatePagamento
-                                }
-                            />
+                            <Container style={{ marginTop: "1rem" }}>
+                                <Container>
+                                    <FullSizeButton
+                                        title="PAGAR"
+                                        to=""
+                                        totalValue={props.totalValue}
+                                        status={props.status}
+                                        changeStatus={props.changeStatus}
+                                        changeStatePagamento={
+                                            props.changeStatePagamento
+                                        }
+                                        paymentCalc={props.paymentCalc}
+                                    />
+                                </Container>
+                            </Container>
                         </div>
                     </div>
                 </Row>

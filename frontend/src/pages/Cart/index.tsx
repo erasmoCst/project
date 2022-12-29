@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 
 import { interfacePayment, interfaceProducts } from "../../interfaces";
-import { formatBRL } from "../../functions";
 
 import { Header } from "./../../components/Header";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
@@ -11,9 +13,29 @@ import { CartCheckout } from "../../components/CartCheckout";
 import { Payment } from "../../components/Payment";
 /* import { Footer } from "./../../components/Footer"; */
 
-import cameraIM3 from "./../../images/camera-im3.png";
+export const Cart = () => {
+    const { id } = useParams();
+    const [product, setProduct] = useState<interfaceProducts>({
+        id: 0,
+        title: "",
+        brand: "",
+        price: 0,
+        color: "",
+        imagemp: "",
+    });
 
-export const Cart = (props: interfaceProducts) => {
+    useEffect(() => {
+        axios
+            .get("http://localhost:3001/products?id=" + id)
+            .then((response) => {
+                //console.log(response.data);
+                setProduct(response.data[0]);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }, [id]);
+
     /*---------Q U A N T I D A D E-------------*/
     const [qtdy, setQtdy] = useState(1);
 
@@ -47,11 +69,11 @@ export const Cart = (props: interfaceProducts) => {
     }
 
     const totalValue: number =
-        subtotal(props.price, qtdy) + freight(props.price, qtdy);
+        subtotal(product.price, qtdy) + freight(product.price, qtdy);
     /*------------------------------------------*/
 
     const [statePagamento, setStatePagamento] = useState<interfacePayment>({
-        total: 0,
+        total: totalValue,
         moneyQtdy: [0],
         money: [0],
         quantity: 0,
@@ -61,84 +83,118 @@ export const Cart = (props: interfaceProducts) => {
         setStatePagamento(pgto);
     }
 
+    let pagamento = {
+        total: totalValue,
+        moneyQtdy: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        money: [200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.25, 0.1, 0.05, 0.01],
+        quantity: 0,
+    };
+
+    function paymentCalc(): void {
+        console.log(`Pagamento Total: ${pagamento.total}`);
+        for (let i = 0; i < 13; i++) {
+            while (pagamento.total >= pagamento.money[i]) {
+                pagamento.quantity++;
+                pagamento.total = pagamento.total - pagamento.money[i];
+                pagamento.total = parseFloat(pagamento.total.toFixed(2));
+                pagamento.moneyQtdy[i] = pagamento.quantity;
+            }
+            pagamento.quantity = 0;
+        }
+        console.log(`Pagamento Total: ${pagamento.total}`);
+        console.log(`Pagamento Total: ${pagamento.moneyQtdy}`);
+    }
+
     return (
         <>
             <Header />
             <Container style={{ marginTop: 20, marginBottom: 40 }}>
                 <PathBreadcrum path="Carrinho" />
-                <div className="row">
-                    <div className="col-8">
-                        <h3
-                            style={{
-                                fontWeight: "bold",
-                                color: "#353535",
-                                margin: "12px",
-                                padding: "10px 0 20px",
-                            }}
-                        >
-                            Carrinho
-                        </h3>
-                    </div>
-                    <div className="col-4">
-                        <h3
-                            style={{
-                                fontWeight: "bold",
-                                color: "#353535",
-                                margin: "12px",
-                                padding: "10px 0 20px",
-                            }}
-                        >
-                            Resumo do Pedido
-                        </h3>
-                    </div>
-                </div>
-
-                <div className="row">
-                    <div
-                        className="col-8"
-                        style={{
-                            boxSizing: "border-box",
-                            border: "1px solid #B2B2B2",
-                            borderRadius: "7px",
-                            display: "flex",
-                            alignItems: "center",
-                        }}
-                    >
-                        <CartCard
-                            id={props.id}
-                            title={props.title}
-                            brand={props.brand}
-                            price={props.price}
-                            color={props.color}
-                            imagemp={props.imagemp}
-                            qtdy={qtdy}
-                            increaseQtdy={increaseQtdy}
-                            decreaseQtdy={decreaseQtdy}
-                        ></CartCard>
-                    </div>
-                    <div className="col-4">
-                        <CartCheckout
-                            price={props.price}
-                            qtdy={qtdy}
-                            status={status}
-                            changeStatus={changeStatus}
-                            subtotal={subtotal}
-                            freight={freight}
-                            totalValue={totalValue}
-                            changeStatePagamento={changeStatePagamento}
-                        ></CartCheckout>
-                    </div>
-                </div>
-                <br></br>
-                <div className="row">
-                    <div className="col-8"></div>
-                    <div
-                        style={{ visibility: status ? "visible" : "hidden" }}
-                        className="col-4"
-                    >
-                        <Payment propStatePagamento={statePagamento} />
-                    </div>
-                </div>
+                {product ? (
+                    <>
+                        <div className="row">
+                            <div className="col-8">
+                                <h3
+                                    style={{
+                                        fontWeight: "bold",
+                                        color: "#353535",
+                                        margin: "12px",
+                                        padding: "10px 0 20px",
+                                    }}
+                                >
+                                    Carrinho
+                                </h3>
+                            </div>
+                            <div className="col-4">
+                                <h3
+                                    style={{
+                                        fontWeight: "bold",
+                                        color: "#353535",
+                                        margin: "12px",
+                                        padding: "10px 0 20px",
+                                    }}
+                                >
+                                    Resumo do Pedido
+                                </h3>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div
+                                className="col-8"
+                                style={{
+                                    boxSizing: "border-box",
+                                    border: "1px solid #B2B2B2",
+                                    borderRadius: "7px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <CartCard
+                                    id={product.id}
+                                    title={product.title}
+                                    brand={product.brand}
+                                    price={product.price}
+                                    color={product.color}
+                                    imagemp={
+                                        "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
+                                        product.imagemp
+                                    }
+                                    qtdy={qtdy}
+                                    increaseQtdy={increaseQtdy}
+                                    decreaseQtdy={decreaseQtdy}
+                                ></CartCard>
+                            </div>
+                            <div className="col-4">
+                                <CartCheckout
+                                    price={product.price}
+                                    qtdy={qtdy}
+                                    status={status}
+                                    changeStatus={changeStatus}
+                                    subtotal={subtotal}
+                                    freight={freight}
+                                    totalValue={totalValue}
+                                    changeStatePagamento={changeStatePagamento}
+                                    paymentCalc={paymentCalc}
+                                    //pgto={statePagamento}
+                                ></CartCheckout>
+                            </div>
+                        </div>
+                        <br></br>
+                        <div className="row">
+                            <div className="col-8"></div>
+                            <div
+                                style={{
+                                    visibility: status ? "visible" : "hidden",
+                                }}
+                                className="col-4"
+                            >
+                                <Payment propStatePagamento={statePagamento} />
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <h2>No products found </h2>
+                )}
             </Container>
             {/* <Footer /> */}
         </>

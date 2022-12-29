@@ -1,28 +1,28 @@
 {
     "products": [
         {
-            "id": "1",
-            "brand": "intelbras",
+            "id": 1,
+            "brand": "Intelbras",
             "title": "Câmera interna inteligente Wi-Fi Full HD iM3",
-            "price": "300,00",
+            "price": 300.00,
             "color": "Branco",
-            "imagemp": "ssgs20p.jpg"
+            "imagemp": "product-1.png"
         },
         {
-            "id": "2",
+            "id": 2,
             "brand": "Hikvision",
             "title": "Câmera DS-2CD 2583G2-I",
-            "price": "645,00",
+            "price": 645.00,
             "color": "Branco",
-            "imagemp": "ip11p.jpg"
+            "imagemp": "product-2.png"
         },
         {
-            "id": "3",
+            "id": 3,
             "title": "Câmera interna inteligente Wi-Fi Full HD iM4",
-            "brand": "intelbras",
-            "price": "349,00",
+            "brand": "Intelbras",
+            "price": 349.00,
             "color": "Branco",
-            "imagemp": "smotog32p.jpg"
+            "imagemp": "product-3.png"
         }
     ]
 }

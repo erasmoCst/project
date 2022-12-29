@@ -24,3 +24,52 @@
     text-decoration: none;
     color: #0F4C81;
 }
+
+.field-label {
+    position: relative;
+    margin-bottom: 2em;
+    font-weight: bold;
+    letter-spacing: 0.4px;
+}
+
+.form-label {
+    color: rgba(0, 0, 0);
+    font-weight: normal;
+    letter-spacing: 0.4px;
+    font-size: 14px;
+    position: absolute;
+    top: -10px;
+    left: 12px;
+    padding: 0 6px;
+    background: #ffffff;
+    width: auto;
+}
+
+input, select{
+    border: 1px solid #d9d9d9;
+    padding-left: 1em;
+    border-radius: 7px;
+    min-height: 3.2em;
+    color: #000000;
+    display: block; 
+    outline: none;
+}
+
+input:focus {
+    border: 1px solid #353535;
+}
+
+::placeholder {
+    color: #d9d9d9;
+    letter-spacing: 0.15px;
+    font-size: 100%;
+    line-height: 50%;
+}
+
+.unit { 
+    position: absolute; 
+    display: block; 
+    left: 1em; 
+    top: 0.85em; 
+    z-index: 9; 
+  }

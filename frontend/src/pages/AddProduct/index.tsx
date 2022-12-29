@@ -14,7 +14,7 @@ export const AddProduct = () => {
             <Header />
             <Container>
                 <PathBreadcrum path="Adicionar Produto" />
-                <ProductForm title="Adicionar Produto" />
+                <ProductForm formTitle="Adicionar Produto" />
                 <Link to="/">
                     <ProductButton
                         title="ADICIONAR PRODUTO"
