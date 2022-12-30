@@ -25,16 +25,33 @@ export const Home = () => {
             });
     }, []);
 
+    function deleteItem(id: number): void {
+        /* axios.delete("http://localhost:3001/products?id=" + id)
+            .then((response) => {
+                //console.log(response.data);
+                setProducts(response.data[0]);
+            })
+            .catch((error) => {
+                console.log(error);
+            }); */
+    }
+
     return (
         <>
             <Header />
             <Container>
-                <div className="row" style={{marginTop:"3em"}}>
+                <div className="row" style={{ marginTop: "3em" }}>
                     <div
                         className="col-md-2"
                         //style={{ display: "flex", alignItems: "center" }}
                     >
-                        <h2 style={{marginLeft:"2em", textAlign:"right", fontWeight: "bold"}}>
+                        <h2
+                            style={{
+                                marginLeft: "2em",
+                                textAlign: "right",
+                                fontWeight: "bold",
+                            }}
+                        >
                             Produtos
                         </h2>
                     </div>
@@ -49,6 +66,7 @@ export const Home = () => {
                         }}
                     >
                         <ProductButton
+                            type={undefined}
                             title="Adicionar Produto"
                             to="/add-produto"
                             icon={AddIcon}
@@ -64,9 +82,11 @@ export const Home = () => {
                         price={product.price}
                         color={product.color}
                         imagemp={
-                            "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
-                            product.imagemp
+                            "data:image/png;base64," + product.imagemp
+                            /* "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
+                            product.imagemp */
                         }
+                        deleteItem={deleteItem}
                     ></Card>
                 ))}
             </Container>

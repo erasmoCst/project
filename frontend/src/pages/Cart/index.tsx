@@ -108,36 +108,39 @@ export const Cart = () => {
     return (
         <>
             <Header />
-            <Container style={{ marginTop: 20, marginBottom: 40 }}>
+            <Container>
                 <PathBreadcrum path="Carrinho" />
+                <br />
+
                 {product ? (
                     <>
                         <div className="row">
-                            <div className="col-8">
+                            <div className="col-8" style={{display: "flex", alignItems:"center"}}>
                                 <h3
                                     style={{
                                         fontWeight: "bold",
                                         color: "#353535",
-                                        margin: "12px",
-                                        padding: "10px 0 20px",
+/*                                         margin: "12px 0 12px 0",
+                                        padding: "10px 0 20px", */
                                     }}
                                 >
                                     Carrinho
                                 </h3>
                             </div>
-                            <div className="col-4">
+                            <div className="col-4" style={{display: "flex", alignItems:"center"}}>
                                 <h3
                                     style={{
                                         fontWeight: "bold",
                                         color: "#353535",
-                                        margin: "12px",
-                                        padding: "10px 0 20px",
+/*                                         margin: "12px 0 12px 0",
+                                        padding: "10px 0 20px", */
                                     }}
                                 >
                                     Resumo do Pedido
                                 </h3>
                             </div>
                         </div>
+                        <br />
                         <div className="row">
                             <div
                                 className="col-8"
@@ -156,8 +159,7 @@ export const Cart = () => {
                                     price={product.price}
                                     color={product.color}
                                     imagemp={
-                                        "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
-                                        product.imagemp
+                                        "data:image/png;base64," + product.imagemp
                                     }
                                     qtdy={qtdy}
                                     increaseQtdy={increaseQtdy}

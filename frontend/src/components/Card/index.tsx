@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 import { interfaceProducts } from "../../interfaces";
 import { formatBRL } from "../../functions";
@@ -11,7 +12,24 @@ import IconCart from "./../../icons/icon-cart.svg";
 import IconEdit from "./../../icons/icon-edit.svg";
 import IconTrash from "./../../icons/icon-trash.svg";
 
-export const Card = (props: interfaceProducts) => {
+interface interfaceProps extends interfaceProducts{
+    deleteItem: (id: number) => void;
+}
+
+export const Card = (props: interfaceProps) => {
+    const [products, setProducts] = useState<Array<interfaceProducts>>([]);
+
+    function deleteItem(id: number):any {
+        /* axios.delete("http://localhost:3001/products?id=" + props.id)
+            .then((response) => {
+                //console.log(response.data);
+                setProducts(response.data[0]);
+            })
+            .catch((error) => {
+                console.log(error);
+            }); */
+    }
+
     return (
         <Container fluid>
             <Row style={{ marginTop: "3.5em", marginBottom: "3.5em" }}>
@@ -71,7 +89,7 @@ export const Card = (props: interfaceProducts) => {
                             <img src={IconEdit} alt="edit" />
                         </Link>
                     </IconContext.Provider>
-                    <img src={IconTrash} alt="delete" />
+                    <img onClick={deleteItem(props.id)} src={IconTrash} alt="delete" />
                 </div>
             </Row>
         </Container>

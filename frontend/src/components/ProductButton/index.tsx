@@ -4,15 +4,17 @@ import { Link } from "react-router-dom";
 
 interface interfaceButton {
     title: string;
-    to: string;
+    to?: string;
+    type: "button" | "submit" | "reset" | undefined;
     icon: string | null;
 }
 
 export const ProductButton = (props: interfaceButton) => {
     return (
         <>
-            <Link to={props.to}>
+            {/* <Link to={props.to}> */}
                 <Button
+                    type={props.type}
                     variant="primary"
                     size="lg"
                     active
@@ -32,7 +34,7 @@ export const ProductButton = (props: interfaceButton) => {
 
                     {`${props.title}`}
                 </Button>{" "}
-            </Link>
+            {/* </Link> */}
         </>
     );
 };

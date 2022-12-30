@@ -7,7 +7,7 @@ import { Container, Row } from "react-bootstrap";
 import IconMinus from "./../../icons/icon-minus.svg";
 import IconPlus from "./../../icons/icon-plus.svg";
 
-interface interfaceCart extends interfaceProducts{
+interface interfaceCart extends interfaceProducts {
     qtdy: number;
     increaseQtdy: () => void;
     decreaseQtdy: () => void;
@@ -16,8 +16,15 @@ interface interfaceCart extends interfaceProducts{
 export const CartCard = (props: interfaceCart) => {
     return (
         <>
-            <Container fluid>
-                <Row>
+            <Container
+                fluid
+                style={{
+                    height: "100%",
+                    /*                     display: "flex",
+                    alignItems: "center", */
+                }}
+            >
+                <Row style={{ height: "50%" }}>
                     <div
                         className="col-md-2"
                         style={{
@@ -26,82 +33,111 @@ export const CartCard = (props: interfaceCart) => {
                             justifyContent: "center",
                         }}
                     >
-                        <img className="w-50" src={props.imagemp} />
+                        <img className="w-75" src={props.imagemp} />
                     </div>
-                    <div className="col-md-7">
-                        <h3>{props.title}</h3>
-                        <p>{props.brand}</p>
-                        <p>Cor: {props.color}</p>
-                    </div>
-
-                    <Container>
-                        <div className="row">
-                            <div
-                                className="col-12"
+                    <div
+                        className="col-md-6"
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                    >
+                        <div>
+                            <p style={{ margin: "0", fontWeight: "bold" }}>
+                                {props.title}
+                            </p>
+                            <p
                                 style={{
-                                    borderTop: "1px solid #B2B2B2",
+                                    margin: "0",
+                                    fontSize: "90%",
+                                    fontWeight: "normal",
                                 }}
                             >
-                                <div
+                                {props.brand}
+                            </p>
+                            <p
+                                style={{
+                                    margin: "0",
+                                    fontSize: "90%",
+                                    fontWeight: "normal",
+                                }}
+                            >
+                                Cor: {props.color}
+                            </p>
+                        </div>
+                    </div>
+                </Row>
+
+                <Row style={{ height: "50%", borderTop: "1px solid #B2B2B2" }}>
+                    <Container
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                        }}
+                    >
+                        <div className="col-12">
+                            <div
+                                style={{
+                                    marginTop: "15px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                }}
+                            >
+                                <p
                                     style={{
-                                        marginTop: "15px",
-                                        display: "flex",
-                                        alignItems: "center",
+                                        fontWeight: "bold",
+                                        textAlign: "center",
+                                        margin: "0px",
                                     }}
                                 >
-                                    <p style={{ fontWeight: "bold" }}>
-                                        Quantidade:{" "}
+                                    Quantidade:{" "}
+                                </p>
+
+                                <button
+                                    onClick={props.decreaseQtdy}
+                                    style={{
+                                        border: "none",
+                                        backgroundColor: "#FFFFFF",
+                                    }}
+                                >
+                                    <img src={IconMinus} alt="minus-button" />
+                                </button>
+                                <div
+                                    style={{
+                                        textAlign: "center",
+                                        width: "35px",
+                                        height: "35px",
+                                        boxSizing: "border-box",
+                                        border: "1px solid #353535",
+                                        borderRadius: "7px",
+                                    }}
+                                >
+                                    <p style={{ marginTop: "5px" }}>
+                                        {props.qtdy}
                                     </p>
+                                </div>
 
-                                    <button
-                                        onClick={props.decreaseQtdy}
+                                <button
+                                    onClick={props.increaseQtdy}
+                                    style={{
+                                        border: "none",
+                                        backgroundColor: "#FFFFFF",
+                                    }}
+                                >
+                                    <img src={IconPlus} alt="plus-button" />
+                                </button>
+                                <div className="col-8">
+                                    <p
                                         style={{
-                                            border: "none",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                    >
-                                        <img
-                                            src={IconMinus}
-                                            alt="minus-button"
-                                        />
-                                    </button>
-                                    <div
-                                        style={{
+                                            fontWeight: "bold",
+                                            display: "flex",
+                                            justifyContent: "flex-end",
                                             textAlign: "center",
-                                            width: "35px",
-                                            height: "35px",
-                                            boxSizing: "border-box",
-                                            border: "1px solid #353535",
-                                            borderRadius: "7px",
+                                            margin: "0px",
                                         }}
                                     >
-                                        <p style={{ marginTop: "5px" }}>
-                                            {props.qtdy}
-                                        </p>
-                                    </div>
-
-                                    <button
-                                        onClick={props.increaseQtdy}
-                                        style={{
-                                            border: "none",
-                                            backgroundColor: "#FFFFFF",
-                                        }}
-                                    >
-                                        <img src={IconPlus} alt="plus-button" />
-                                    </button>
-                                    <div className="col-8">
-                                        <p
-                                            style={{
-                                                fontWeight: "700",
-                                                display: "flex",
-                                                justifyContent: "flex-end",
-                                            }}
-                                        >
-                                            {formatBRL(
-                                                props.price * props.qtdy
-                                            )}
-                                        </p>
-                                    </div>
+                                        {formatBRL(props.price * props.qtdy)}
+                                    </p>
                                 </div>
                             </div>
                         </div>
