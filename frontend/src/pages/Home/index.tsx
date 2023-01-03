@@ -25,16 +25,16 @@ export const Home = () => {
             });
     }, []);
 
-    function deleteItem(id: number): void {
-        /* axios.delete("http://localhost:3001/products?id=" + id)
+/*     function deleteItem(id: number): void {
+        axios.delete("http://localhost:3001/products?id=" + id)
             .then((response) => {
                 //console.log(response.data);
                 setProducts(response.data[0]);
             })
             .catch((error) => {
                 console.log(error);
-            }); */
-    }
+            });
+    } */
 
     return (
         <>
@@ -86,7 +86,7 @@ export const Home = () => {
                             /* "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
                             product.imagemp */
                         }
-                        deleteItem={deleteItem}
+                        //deleteItem={deleteItem}
                     ></Card>
                 ))}
             </Container>

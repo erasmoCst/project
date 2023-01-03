@@ -40,7 +40,7 @@ export const EditProduct = () => {
             <Header />
             <Container>
                 <PathBreadcrum path="Editar Produto" />
-                {/* <ProductForm
+                <ProductForm
                     formTitle="Editar Produto"
                     id={product.id}
                     title={product.title}
@@ -51,8 +51,9 @@ export const EditProduct = () => {
                         "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
                         product.imagemp
                     }
-                /> */}
-                <Link to="/">
+                    
+                />
+                  <Link to="/">
                     <ProductButton type={undefined} title="EDITAR PRODUTO" to="/" icon="" />
                 </Link>
             </Container>

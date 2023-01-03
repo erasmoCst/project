@@ -12,14 +12,15 @@ import IconCart from "./../../icons/icon-cart.svg";
 import IconEdit from "./../../icons/icon-edit.svg";
 import IconTrash from "./../../icons/icon-trash.svg";
 
-interface interfaceProps extends interfaceProducts{
-    deleteItem: (id: number) => void;
+interface interfaceProps extends interfaceProducts {
+    //deleteItem: (id: number) => void;
 }
 
 export const Card = (props: interfaceProps) => {
-    const [products, setProducts] = useState<Array<interfaceProducts>>([]);
+    //const [products, setProducts] = useState<Array<interfaceProducts>>([]);
 
-    function deleteItem(id: number):any {
+    function deleteItem(): any {
+        console.log(props.id);
         /* axios.delete("http://localhost:3001/products?id=" + props.id)
             .then((response) => {
                 //console.log(response.data);
@@ -89,7 +90,15 @@ export const Card = (props: interfaceProps) => {
                             <img src={IconEdit} alt="edit" />
                         </Link>
                     </IconContext.Provider>
-                    <img onClick={deleteItem(props.id)} src={IconTrash} alt="delete" />
+                    <button
+                        /* onClick={deleteItem()} */
+                        style={{
+                            border: "none",
+                            backgroundColor: "#FFFFFF",
+                        }}
+                    >
+                        <img src={IconTrash} alt="delete" />
+                    </button>
                 </div>
             </Row>
         </Container>

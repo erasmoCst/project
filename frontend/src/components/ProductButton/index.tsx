@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 interface interfaceButton {
     title: string;
-    to?: string;
+    to: string;
     type: "button" | "submit" | "reset" | undefined;
     icon: string | null;
 }
@@ -12,7 +12,7 @@ interface interfaceButton {
 export const ProductButton = (props: interfaceButton) => {
     return (
         <>
-            {/* <Link to={props.to}> */}
+            <Link to={props.to}>
                 <Button
                     type={props.type}
                     variant="primary"
@@ -34,7 +34,7 @@ export const ProductButton = (props: interfaceButton) => {
 
                     {`${props.title}`}
                 </Button>{" "}
-            {/* </Link> */}
+            </Link>
         </>
     );
 };

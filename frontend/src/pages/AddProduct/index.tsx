@@ -41,7 +41,7 @@ export const AddProduct = () => {
 
         product = e.target.value;
 
-        console.log("formSubmit");
+        console.log({product});
         axios
             .post("http://localhost:3001/products", { product })
             .then((res) => {

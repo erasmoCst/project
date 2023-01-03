@@ -7,7 +7,7 @@ import { ProductButton } from "../../components/ProductButton";
 
 interface interfaceForm {
     formTitle: string;
-    formSubmit: (e: any) => void;
+    formSubmit?: (e: any) => void;
     id?: number;
     date?: Date;
     title?: string;
@@ -99,6 +99,7 @@ export const ProductForm = (props: interfaceForm) => {
                     {/* PRODUCT IMAGES INPUT */}
                     <div className="field-label">
                         <label className="form-label">Adicionar Imagens</label>
+                        {/* <img src="" alt="add-product" /> */}
                         <input
                             id="images"
                             name="images"
