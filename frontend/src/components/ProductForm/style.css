@@ -73,3 +73,12 @@ input:focus {
     top: 0.85em; 
     z-index: 9; 
   }
+
+  .dashed{
+    max-width: 150px;
+    max-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://raw.githubusercontent.com/erasmoCst/ViptechProjectImages/a53df3f1a28022b3c584c7b62fba487215d42da0/dashed-square.svg);
+  }

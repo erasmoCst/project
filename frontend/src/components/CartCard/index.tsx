@@ -33,7 +33,7 @@ export const CartCard = (props: interfaceCart) => {
                             justifyContent: "center",
                         }}
                     >
-                        <img className="w-75" src={props.imagemp} />
+                        <img className="w-75" src={props.images} />
                     </div>
                     <div
                         className="col-md-6"

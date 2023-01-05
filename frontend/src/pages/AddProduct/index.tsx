@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import { Container } from "react-bootstrap";
@@ -16,17 +16,18 @@ import { ProductForm } from "../../components/ProductForm";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
 /* import { Footer } from "../../components/Footer"; */
 
-let product: interfaceProducts = {
+/* let product: interfaceProducts = {
     id: 0,
-    title:"",
+    title:"aaa",
     brand:"",
     price:0,
     color:"",
-    imagemp:""
-};
+    images:""
+}; */
 
 export const AddProduct = () => {
     //const { id } = useParams();
+
     const navigate: NavigateFunction = useNavigate();
 
     /*  useEffect(() => {
@@ -39,17 +40,22 @@ export const AddProduct = () => {
     function formSubmit(e: any): void {
         e.preventDefault();
 
-        product = e.target.value;
+        
+        let title: string  = e.target.name[0].value;
+        let brand: string  = e.target.name[1].value;
+        let price: number  = e.target.name[2].value;
+        let color: string  = e.target.name[3].value;
+        let date:  Date    = e.target.name[4].value;
+        let images: string = e.target.name[5].value;
 
-        console.log({product});
-        axios
-            .post("http://localhost:3001/products", { product })
+         axios
+            .post("http://localhost:3001/products", {title, brand, price, color, images})
             .then((res) => {
                 navigate("/");
             })
             .catch((error) => {
                 console.log(error);
-            });
+            }); 
     }
 
     return (
@@ -58,7 +64,7 @@ export const AddProduct = () => {
             <Container>
                 <PathBreadcrum path="Adicionar Produto" />
                 {/* <form onSubmit={formSubmit}> */}
-                    <ProductForm formSubmit={formSubmit} formTitle="Adicionar Produto" />
+                    <ProductForm formSubmit={formSubmit} formTitle="Adicionar Produto"/>
                 {/* </form> */}
             </Container>
             {/* <Footer /> */}

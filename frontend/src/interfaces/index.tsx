@@ -7,7 +7,7 @@ export interface interfaceProducts {
     brand: string;
     price: number;
     color: string;
-    imagemp: string;
+    images: string;
 }
 
 export interface interfacePayment {

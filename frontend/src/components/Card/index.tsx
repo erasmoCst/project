@@ -13,29 +13,15 @@ import IconEdit from "./../../icons/icon-edit.svg";
 import IconTrash from "./../../icons/icon-trash.svg";
 
 interface interfaceProps extends interfaceProducts {
-    //deleteItem: (id: number) => void;
+    handleDelete: (id: number) => any;
 }
 
 export const Card = (props: interfaceProps) => {
-    //const [products, setProducts] = useState<Array<interfaceProducts>>([]);
-
-    function deleteItem(): any {
-        console.log(props.id);
-        /* axios.delete("http://localhost:3001/products?id=" + props.id)
-            .then((response) => {
-                //console.log(response.data);
-                setProducts(response.data[0]);
-            })
-            .catch((error) => {
-                console.log(error);
-            }); */
-    }
-
     return (
         <Container fluid>
             <Row style={{ marginTop: "3.5em", marginBottom: "3.5em" }}>
                 <div className="col-md-2" style={{ textAlign: "center" }}>
-                    <img className="w-50" src={props.imagemp} />
+                    <img className="w-50" src={props.images} />
                 </div>
                 <div className="col-md-6">
                     <p style={{ margin: "0", fontWeight: "bold" }}>
@@ -91,7 +77,10 @@ export const Card = (props: interfaceProps) => {
                         </Link>
                     </IconContext.Provider>
                     <button
-                        /* onClick={deleteItem()} */
+                        onClick={() => {
+                            props.handleDelete(props.id);
+                            window.location.reload();
+                        }}
                         style={{
                             border: "none",
                             backgroundColor: "#FFFFFF",

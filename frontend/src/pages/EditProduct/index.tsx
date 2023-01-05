@@ -20,7 +20,7 @@ export const EditProduct = () => {
         brand: "",
         price: 0,
         color: "",
-        imagemp: "",
+        images: "",
     });
 
     useEffect(() => {
@@ -49,7 +49,7 @@ export const EditProduct = () => {
                     color={product.color}
                     imagemp={
                         "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
-                        product.imagemp
+                        product.images
                     }
                     
                 />

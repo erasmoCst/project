@@ -21,7 +21,7 @@ export const Cart = () => {
         brand: "",
         price: 0,
         color: "",
-        imagemp: "",
+        images: "",
     });
 
     useEffect(() => {
@@ -158,8 +158,8 @@ export const Cart = () => {
                                     brand={product.brand}
                                     price={product.price}
                                     color={product.color}
-                                    imagemp={
-                                        "data:image/png;base64," + product.imagemp
+                                    images={
+                                        "data:image/png;base64," + product.images
                                     }
                                     qtdy={qtdy}
                                     increaseQtdy={increaseQtdy}

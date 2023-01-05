@@ -25,8 +25,20 @@ export const Home = () => {
             });
     }, []);
 
-/*     function deleteItem(id: number): void {
-        axios.delete("http://localhost:3001/products?id=" + id)
+    const handleDelete = async (id: number) => {
+        try{
+            console.log(id);
+            
+            await axios
+            .delete("http://localhost:3001/products/" + id)
+                console.log("deleted");
+        }catch(error) {
+                console.log(error);
+            }
+        }
+
+/*      function deleteItem(id: number): any {
+        axios.delete("http://localhost:3001/products/" + id)
             .then((response) => {
                 //console.log(response.data);
                 setProducts(response.data[0]);
@@ -34,7 +46,7 @@ export const Home = () => {
             .catch((error) => {
                 console.log(error);
             });
-    } */
+    }  */
 
     return (
         <>
@@ -81,12 +93,10 @@ export const Home = () => {
                         brand={product.brand}
                         price={product.price}
                         color={product.color}
-                        imagemp={
-                            "data:image/png;base64," + product.imagemp
-                            /* "https://raw.githubusercontent.com/erasmocst/ViptechProjectImages/main/" +
-                            product.imagemp */
+                        images={
+                            "data:image/png;base64," + product.images
                         }
-                        //deleteItem={deleteItem}
+                        handleDelete={handleDelete}
                     ></Card>
                 ))}
             </Container>
