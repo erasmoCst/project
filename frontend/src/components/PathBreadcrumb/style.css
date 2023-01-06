@@ -1,3 +1,7 @@
 .breadcrumb-item + .breadcrumb-item::before {
     content: var(--bs-breadcrumb-divider, ">") !important;
 }
+
+a{
+    text-decoration: none !important;
+}

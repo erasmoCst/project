@@ -74,11 +74,10 @@ export const Home = () => {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            /* marginTop: "50px", */
                         }}
                     >
                         <ProductButton
-                            type={undefined}
+                            type="button"
                             title="Adicionar Produto"
                             to="/add-produto"
                             icon={AddIcon}
@@ -93,9 +92,7 @@ export const Home = () => {
                         brand={product.brand}
                         price={product.price}
                         color={product.color}
-                        images={
-                            "data:image/png;base64," + product.images
-                        }
+                        images={product.images}
                         handleDelete={handleDelete}
                     ></Card>
                 ))}

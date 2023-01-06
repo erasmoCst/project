@@ -1,30 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
 
 import { formatBRL } from "../../functions";
 
 import { ProductButton } from "../../components/ProductButton";
 
-import AddImage from "./../../images/add-img.svg";
+import StdImg from "./../../images/add-img.svg";
 import Dashed from "./../../images/dashed-square.svg";
 
 interface interfaceForm {
-    formTitle: string;
-    formSubmit?: (e: any) => void;
     id?: number;
     date?: Date;
     title?: string;
     brand?: string;
-    price?: number;
+    price?: number | string;
     color?: string;
-    imagemp?: string;
+    images?: string;
+
+    formTitle: string;
+    formSubmit?: (e: any) => void;
+
+    image: File | null;
+    previewUrl: any;
+    fileInputRef: React.MutableRefObject<HTMLInputElement | null>;
+    handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const ProductForm = (props: interfaceForm) => {
     const today: string = new Date().toISOString().split("T")[0];
-
-    const [image, setImage] = useState("");
-    const [stdImage, setStdImage] = useState(AddImage);
+    
+    useEffect(() => {
+        console.log(props);
+    },[])
 
     return (
         <>
@@ -72,10 +79,9 @@ export const ProductForm = (props: interfaceForm) => {
                         <label className="form-label">Valor</label>
                         <input
                             name="name"
-                            inputMode="numeric"
+                            type="number"
                             style={{ width: "25%", paddingLeft: "2.5em" }}
                             placeholder="000,00"
-                            readOnly={false}
                             defaultValue={props.price}
                         />
                         <span className="unit">R$ </span>
@@ -84,8 +90,8 @@ export const ProductForm = (props: interfaceForm) => {
                     {/* PRODUCT COLOR INPUT */}
                     <div className="field-label">
                         <label className="form-label">Cor</label>
-                        <select id="color" name="name" style={{ width: "20%" }}>
-                            <option value="" disabled>
+                        <select id="color" name="name" style={{ width: "20%" }} value={props.color}>
+                            <option value="" disabled selected={true}>
                                 Selecione uma cor
                             </option>
                             <option value="Branco">Branco</option>
@@ -108,35 +114,53 @@ export const ProductForm = (props: interfaceForm) => {
                     </div>
 
                     {/* PRODUCT IMAGES INPUT */}
-                    <div>
+                    <div
+                        style={{
+                            maxHeight: "150px",
+                            maxWidth: "150px",
+                            marginBottom: "50px",
+                        }}
+                    >
                         <div className="dashed">
-                            <img src={AddImage} alt="Adicionar Imagem" />
+                            <input
+                                type="file"
+                                accept="image/*"
+                                ref={props.fileInputRef}
+                                onChange={props.handleChange}
+                                style={{ display: "none" }}
+                            />
+
+                            <img
+                                style={{
+                                    maxHeight: "150px",
+                                    maxWidth: "150px",
+                                }}
+                                alt="Image Preview"
+                                onClick={() => props.fileInputRef.current?.click()}
+                                src={
+                                    (props.previewUrl) ? props.previewUrl : StdImg
+                                }
+                            />
                         </div>
-                        <br />
-                        <br />
+                    </div>
+                    <div>
                         <input
-                            id="image"
-                            name="name"
-                            type="file"
-                            accept="image/*"
+                            type="submit"
+                            value={props.formTitle}
                             style={{
-                                width: "20%" /* , display: "none"  */,
+                                backgroundColor: "#0F4C81",
+                                border: "none",
+                                color: "white",
+                                fontWeight: "bold",
+                                padding: "15px 32px",
+                                textAlign: "center",
+                                textDecoration: "none",
+                                display: "inline-block",
+                                fontSize: "16px",
+                                textTransform: "uppercase",
                             }}
-                            /* onChange={e => 
-                                setImage(e.target.files[0]) 
-                            }*/
-                            /* {image ? <img src={URL.createObjectURL(image)} alt="Uploaded Image"/> : <img src={URL.createObjectURL(stdImage)} alt="Standard Image"/>} */
                         />
                     </div>
-                    <div>
-                        <input type="submit" value="submit" />
-                    </div>
-                    {/*                    <ProductButton
-                        type="submit"
-                        title="ADICIONAR PRODUTO"
-                        to="/"
-                        icon=""
-                    /> */}
                 </form>
             </div>
         </>

@@ -1,10 +1,11 @@
 const { products } = require("../models");
 
 const searchProduct = async (id) => {
+    console.log(id);
     try {
         if (id) {
-            const result = await products.finByPk(id);
-            result.dataValues.price = parseFloat(result.dataValues.price);
+            const result = await products.findByPk(id);
+            //result.dataValues.price = parseFloat(result.dataValues.price);
             return result;
         }
 

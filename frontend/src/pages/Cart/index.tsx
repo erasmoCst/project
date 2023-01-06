@@ -26,10 +26,10 @@ export const Cart = () => {
 
     useEffect(() => {
         axios
-            .get("http://localhost:3001/products?id=" + id)
+            .get("http://localhost:3001/products/" + id)
             .then((response) => {
                 //console.log(response.data);
-                setProduct(response.data[0]);
+                setProduct(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -158,9 +158,7 @@ export const Cart = () => {
                                     brand={product.brand}
                                     price={product.price}
                                     color={product.color}
-                                    images={
-                                        "data:image/png;base64," + product.images
-                                    }
+                                    images={product.images}
                                     qtdy={qtdy}
                                     increaseQtdy={increaseQtdy}
                                     decreaseQtdy={decreaseQtdy}

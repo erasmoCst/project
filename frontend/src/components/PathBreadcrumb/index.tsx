@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css"
+import "./style.css";
 import { Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 interface interfacePath {
@@ -8,15 +8,10 @@ interface interfacePath {
 
 export const PathBreadcrum = (props: interfacePath) => {
     return (
-        <div style={{ textDecoration: "none", color: "#0F4C81" }}>
+        <div>
             <Breadcrumb>
-                <Breadcrumb.Item
-                    style={{ textDecoration: "none", color: "#0F4C81" }}
-                >
-                    <Link
-                        to="/"
-                        style={{ textDecoration: "none", color: "#0F4C81" }}
-                    >
+                <Breadcrumb.Item>
+                    <Link to="/" style={{ color: "#0F4C81" }}>
                         Home
                     </Link>
                 </Breadcrumb.Item>
