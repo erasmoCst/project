@@ -25,8 +25,6 @@ router.post("/", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-    //console.log(req.body);
-    //res.send("Update Product");
     try {
         await updateProduct(req.params.id, req.body);
 

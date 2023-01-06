@@ -21,13 +21,7 @@ const searchProduct = async (id) => {
     }
 };
 
-const createProduct = async ({
-    title,
-    brand,
-    price,
-    color,
-    images,
-}) => {
+const createProduct = async ({ title, brand, price, color, images }) => {
     try {
         const result = await products.create({
             title,
@@ -47,7 +41,7 @@ const updateProduct = async (
     id,
     { creation_date, title, brand, color, price, images }
 ) => {
-    const result = await product.update(
+    const result = await products.update(
         {
             creation_date,
             title,
@@ -67,13 +61,13 @@ const updateProduct = async (
 };
 
 const deleteProduct = async (id) => {
-    try{
+    try {
         const result = await products.destroy({
             where: { id },
         });
-        
+
         return `Product ${id} successfuly deleted!`;
-    }catch(error){
+    } catch (error) {
         res.status(500).send({ mensagem: error.message });
     }
 };
