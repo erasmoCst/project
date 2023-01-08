@@ -10,6 +10,7 @@ import { FullSizeButton } from "../FullSizeButton";
 
 /* import { ModalFrete } from "../ModalFrete"; */
 import IconInfo from "./../../icons/icon-info.svg";
+import { ModalFrete } from "../ModalFrete";
 
 interface interfaceProps {
     qtdy: number;
@@ -26,7 +27,6 @@ interface interfaceProps {
 
 export const CartCheckout = (props: interfaceProps) => {
     const [freteModal, setFreteModal] = useState<boolean>(false);
-    const [paymantModal, setPaymantModal] = useState<boolean>(false);
 
     function freteInfo(): void {
         setFreteModal(!freteModal);
@@ -115,6 +115,9 @@ export const CartCheckout = (props: interfaceProps) => {
                                                         />
                                                     </IconContext.Provider>
                                                 </button>
+                                                <ModalFrete
+                                                    status={freteModal}
+                                                ></ModalFrete>
                                             </p>
                                         </div>
                                         <div
@@ -151,7 +154,7 @@ export const CartCheckout = (props: interfaceProps) => {
                                     </div>
                                 </Container>
                             </Container>
-                            <Container style={{ marginTop: "1rem" }}>
+                            <Container /* style={{ marginTop: "1rem" }} */>
                                 <Container>
                                     <FullSizeButton
                                         title="PAGAR"

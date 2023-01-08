@@ -9,7 +9,7 @@ interface interfacePath {
 export const PathBreadcrum = (props: interfacePath) => {
     return (
         <div>
-            <Breadcrumb>
+            <Breadcrumb /* className="example" */>
                 <Breadcrumb.Item>
                     <Link to="/" style={{ color: "#0F4C81" }}>
                         Home

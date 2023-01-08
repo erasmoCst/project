@@ -37,17 +37,6 @@ export const Home = () => {
             }
         }
 
-/*      function deleteItem(id: number): any {
-        axios.delete("http://localhost:3001/products/" + id)
-            .then((response) => {
-                //console.log(response.data);
-                setProducts(response.data[0]);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    }  */
-
     return (
         <>
             <Header />
@@ -59,7 +48,7 @@ export const Home = () => {
                     >
                         <h2
                             style={{
-                                marginLeft: "2em",
+                                marginLeft: "1em",
                                 textAlign: "right",
                                 fontWeight: "bold",
                             }}

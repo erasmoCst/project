@@ -60,6 +60,7 @@ export const Card = (props: interfaceProps) => {
                 <div
                     className="col-md-4"
                     style={{
+                        
                         verticalAlign: "center",
                         display: "flex",
                         alignItems: "center",

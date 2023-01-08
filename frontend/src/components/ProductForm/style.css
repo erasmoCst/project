@@ -1,86 +1,95 @@
 .example {
-    margin: 12px;
+  margin: 12px;
 }
 
 /* Force update ant style */
 .ant-input {
-    padding: 12px 12px 8px 11px;
+  padding: 12px 12px 8px 11px;
 }
 
 .ant-select .ant-select-selector {
-    padding: 16px 10px 4px 11px;
+  padding: 16px 10px 4px 11px;
 }
 
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-    padding: 16px 10px 4px 11px;
-    height: 48px;
+  padding: 16px 10px 4px 11px;
+  height: 48px;
 }
 
 .ant-select-single .ant-select-selector .ant-select-selection-search {
-    top: 16px;
+  top: 16px;
 }
 
 .teste {
-    text-decoration: none;
-    color: #0F4C81;
+  text-decoration: none;
+  color: #0f4c81;
 }
 
 .field-label {
-    position: relative;
-    margin-bottom: 2em;
-    font-weight: bold;
-    letter-spacing: 0.4px;
+  position: relative;
+  margin-bottom: 2em;
+  font-weight: bold;
+  letter-spacing: 0.4px;
 }
 
 .form-label {
-    color: rgba(0, 0, 0);
-    font-weight: normal;
-    letter-spacing: 0.4px;
-    font-size: 14px;
-    position: absolute;
-    top: -10px;
-    left: 12px;
-    padding: 0 6px;
-    background: #ffffff;
-    width: auto;
+  color: rgba(0, 0, 0);
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  font-size: 14px;
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  padding: 0 6px;
+  background: #ffffff;
+  width: auto;
 }
 
 input,
 select {
-    border: 1px solid #d9d9d9;
-    padding-left: 1em;
-    border-radius: 7px;
-    min-height: 3.2em;
-    color: #000000;
-    display: block;
-    outline: none;
+  border: 1px solid #d9d9d9;
+  padding-left: 1em;
+  border-radius: 7px;
+  min-height: 3.2em;
+  color: #000000;
+  display: block;
+  outline: none;
 }
 
 input:focus {
-    border: 1px solid #353535;
+  border: 1px solid #353535;
 }
 
 ::placeholder {
-    color: #d9d9d9;
-    letter-spacing: 0.15px;
-    font-size: 100%;
-    line-height: 50%;
+  color: #d9d9d9;
+  letter-spacing: 0.15px;
+  font-size: 100%;
+  line-height: 50%;
 }
 
 .unit {
-    position: absolute;
-    display: block;
-    left: 1em;
-    top: 0.85em;
-    z-index: 9;
+  position: absolute;
+  display: block;
+  left: 1em;
+  top: 0.85em;
+  z-index: 9;
 }
 
 .dashed {
-    cursor: pointer;
-    max-width: 150px;
-    max-height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px dashed #D9D9D9;
+  cursor: pointer;
+  max-width: 150px;
+  max-height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed #d9d9d9;
+}
+
+.error{
+  border: 1px solid #FF0000;
+  padding-left: 1em;
+  border-radius: 7px;
+  min-height: 3.2em;
+  display: block;
+  outline: none;
 }

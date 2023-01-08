@@ -21,6 +21,7 @@ export const Payment = (props: interfaceProps) => {
         <>
             <div
                 style={{
+                    marginBottom:"50px",
                     width: "100%",
                     boxSizing: "border-box",
                     border: "1px solid #039000",

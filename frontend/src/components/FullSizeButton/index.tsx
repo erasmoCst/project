@@ -57,8 +57,10 @@ export const FullSizeButton = (props: interfaceButton) => {
                 style={{
                     fontWeight: "bold",
                     width: "100%",
-                    backgroundColor: "#0F4C81",
                     margin: "20px 0px 20px 0px",
+                    color: "#FFFFFF", 
+                    border: "none",
+                    backgroundColor: props.status? "#D9D9D9" :  "#0F4C81",
                 }}
                 onChange={buttonChange}
                 /* onClick={props.onClick} */

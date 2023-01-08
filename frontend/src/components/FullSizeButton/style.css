@@ -5,3 +5,9 @@
     color: #000000;
 /*     margin: 20px 0px 20px 0px; */
 }
+
+.btn-toggleOff{
+    background-color: #D9D9D9;
+    color: #FFFFFF;
+    border: none;
+}

@@ -75,10 +75,10 @@ export const CartCard = (props: interfaceCart) => {
                             alignItems: "center",
                         }}
                     >
-                        <div className="col-12">
+                        <div className="col-1.5">
                             <div
                                 style={{
-                                    marginTop: "15px",
+                                    /* marginTop: "15px", */
                                     display: "flex",
                                     alignItems: "center",
                                 }}
@@ -92,53 +92,64 @@ export const CartCard = (props: interfaceCart) => {
                                 >
                                     Quantidade:{" "}
                                 </p>
+                            </div>
+                        </div>
 
-                                <button
-                                    onClick={props.decreaseQtdy}
+                        <div className="col-1" style={{display: "flex", justifyContent: "right"}}>
+                            <button
+                                onClick={props.decreaseQtdy}
+                                style={{
+                                    marginLeft: "10px",
+                                    border: "none",
+                                    backgroundColor: "#FFFFFF",
+                                }}
+                            >
+                                <img src={IconMinus} alt="minus-button" />
+                            </button>
+                        </div>
+
+                        <div className="col-1" style={{display: "flex", justifyContent: "center"}}>
+                            <div
+                                style={{
+                                    display:"flex",
+                                    textAlign: "center",
+                                    width: "35px",
+                                    height: "35px",
+                                    boxSizing: "border-box",
+                                    border: "1px solid #353535",
+                                    borderRadius: "7px",
+                                    justifyContent: "center",
+                                }}
+                            >
+                                <p style={{ marginTop: "5px" }}>{props.qtdy}</p>
+                            </div>
+                        </div>
+
+                        <div className="col-1">
+                            <button
+                                onClick={props.increaseQtdy}
+                                style={{
+                                    border: "none",
+                                    backgroundColor: "#FFFFFF",
+                                }}
+                            >
+                                <img src={IconPlus} alt="plus-button" />
+                            </button>
+                        </div>
+
+                        <div className="col-7">
+                            <div>
+                                <p
                                     style={{
-                                        border: "none",
-                                        backgroundColor: "#FFFFFF",
-                                    }}
-                                >
-                                    <img src={IconMinus} alt="minus-button" />
-                                </button>
-                                <div
-                                    style={{
+                                        fontWeight: "bold",
+                                        display: "flex",
+                                        justifyContent: "flex-end",
                                         textAlign: "center",
-                                        width: "35px",
-                                        height: "35px",
-                                        boxSizing: "border-box",
-                                        border: "1px solid #353535",
-                                        borderRadius: "7px",
+                                        margin: "0px",
                                     }}
                                 >
-                                    <p style={{ marginTop: "5px" }}>
-                                        {props.qtdy}
-                                    </p>
-                                </div>
-
-                                <button
-                                    onClick={props.increaseQtdy}
-                                    style={{
-                                        border: "none",
-                                        backgroundColor: "#FFFFFF",
-                                    }}
-                                >
-                                    <img src={IconPlus} alt="plus-button" />
-                                </button>
-                                <div className="col-8">
-                                    <p
-                                        style={{
-                                            fontWeight: "bold",
-                                            display: "flex",
-                                            justifyContent: "flex-end",
-                                            textAlign: "center",
-                                            margin: "0px",
-                                        }}
-                                    >
-                                        {formatBRL(props.price * props.qtdy)}
-                                    </p>
-                                </div>
+                                    {formatBRL(props.price * props.qtdy)}
+                                </p>
                             </div>
                         </div>
                     </Container>

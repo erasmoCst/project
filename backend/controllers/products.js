@@ -1,7 +1,6 @@
 const { products } = require("../models");
 
 const searchProduct = async (id) => {
-    console.log(id);
     try {
         if (id) {
             const result = await products.findByPk(id);
