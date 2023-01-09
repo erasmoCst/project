@@ -6,6 +6,10 @@ import { formatBRL } from "../../functions";
 import { ProductButton } from "../../components/ProductButton";
 
 import StdImg from "./../../images/add-img.svg";
+interface interfaceValidation {
+  title: string;
+/*   brand: string; */
+}
 
 interface interfaceForm {
   id?: number;
@@ -24,6 +28,7 @@ interface interfaceForm {
   fileInputRef: React.MutableRefObject<HTMLInputElement | null>;
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setColor: React.Dispatch<React.SetStateAction<string>>;
+  formValidation: interfaceValidation;
 }
 
 export const ProductForm = (props: interfaceForm) => {
@@ -53,6 +58,7 @@ export const ProductForm = (props: interfaceForm) => {
               placeholder="Digite o nome do produto"
               defaultValue={props.title}
             />
+            <span>{props.formValidation.title}</span>
           </div>
 
           {/* PRODUCT BRAND INPUT */}

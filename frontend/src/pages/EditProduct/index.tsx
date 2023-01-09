@@ -103,7 +103,7 @@ export const EditProduct = () => {
       <Header />
       <Container>
         <PathBreadcrum path="Editar Produto" />
-        <ProductForm
+        {/* <ProductForm
           formTitle="Editar Produto"
           id={product.id}
           title={product.title}
@@ -117,7 +117,7 @@ export const EditProduct = () => {
           handleChange={handleChange}
           formSubmit={formSubmit}
           setColor={setColor}
-        />
+        /> */}
       </Container>
       {/* <Footer /> */}
     </>
