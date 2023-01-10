@@ -11,11 +11,15 @@ import { PathBreadcrum } from "../../components/PathBreadcrumb";
 import { CartCard } from "../../components/CartCard";
 import { CartCheckout } from "../../components/CartCheckout";
 import { Payment } from "../../components/Payment";
-/* import { Footer } from "./../../components/Footer"; */
+import { Footer } from "./../../components/Footer";
+
+interface interfaceProductsID extends interfaceProducts {
+  id: number;
+}
 
 export const Cart = () => {
   const { id } = useParams();
-  const [product, setProduct] = useState<interfaceProducts>({
+  const [product, setProduct] = useState<interfaceProductsID>({
     id: 0,
     title: "",
     brand: "",
@@ -194,7 +198,7 @@ export const Cart = () => {
           </div>
         </>
       </Container>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

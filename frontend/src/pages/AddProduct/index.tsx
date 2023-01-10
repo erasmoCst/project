@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 
+import { interfaceForm } from "../../interfaces";
+
 import { Container } from "react-bootstrap";
 
 import { NavigateFunction, useNavigate } from "react-router-dom";
@@ -8,90 +10,127 @@ import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Header } from "../../components/Header";
 import { ProductForm } from "../../components/ProductForm";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
-/* import { Footer } from "../../components/Footer"; */
+import { Footer } from "../../components/Footer";
 
-interface interfaceValidation {
-    title: boolean;
-    /* brand: string; */
-}
+
+let productSubmit: interfaceForm = {
+  title: "",
+  brand: "",
+  price: "",
+  color: "",
+  date: new Date(),
+  images: "",
+};
 
 export const AddProduct = () => {
-    const navigate: NavigateFunction = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
-    const [color, setColor] = useState<string>("");
-    const [formValidation, setFormValidation] = useState({
-        title: false,
-        /* brand: "", */
-    });
+  const [color, setColor] = useState<string>("");
 
-    const [imageUrl, setImageUrl] = useState<File | null>(null);
-    const [previewUrl, setPreviewUrl] = useState<string | any>(null);
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [formValidateTitle, setFormValidateTitle] = useState<boolean>(false);
+  const [formValidateBrand, setFormValidateBrand] = useState<boolean>(false);
+  const [formValidatePrice, setFormValidatePrice] = useState<boolean>(false);
+  const [formValidateColor, setFormValidateColor] = useState<boolean>(false);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (!file) {
-            return;
-        }
+  const [imageUrl, setImageUrl] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | any>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-        setImageUrl(file);
-
-        const reader = new FileReader();
-        reader.onload = () => {
-            setPreviewUrl(reader.result);
-        };
-        reader.readAsDataURL(file);
-    };
-
-    function formSubmit(e: any): void {
-        e.preventDefault();
-
-        let title: string = e.target.name[0].value;
-        let brand: string = e.target.name[1].value;
-        let price: number = e.target.name[2].value;
-        let color: string = e.target.name[3].value;
-        let date: Date = e.target.name[4].value;
-        let images: string = previewUrl;
-
-        if (title === "") {
-            setFormValidation(formValidation => ({...formValidation, title: false }));
-            console.log(formValidation.title);
-        } else {
-            axios
-                .post("http://localhost:3001/products", {
-                    title,
-                    brand,
-                    price,
-                    color,
-                    images,
-                })
-                .then((res) => {
-                    navigate("/");
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) {
+      return;
     }
 
-    return (
-        <>
-            <Header />
-            <Container>
-                <PathBreadcrum path="Adicionar Produto" />
-                <ProductForm
-                    imageUrl={imageUrl}
-                    previewUrl={previewUrl}
-                    fileInputRef={fileInputRef}
-                    handleChange={handleChange}
-                    formSubmit={formSubmit}
-                    formTitle="Adicionar Produto"
-                    color={color}
-                    setColor={setColor}
-                    formValidation={formValidation}
-                />
-            </Container>
-            {/* <Footer /> */}
-        </>
-    );
+    setImageUrl(file);
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      setPreviewUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  function handleSubmit(e: any): void {
+    e.preventDefault();
+
+    let isValid = true;
+
+    productSubmit.title = e.target.name[0].value;
+    productSubmit.brand = e.target.name[1].value;
+    productSubmit.price = e.target.name[2].value;
+    productSubmit.color = e.target.name[3].value;
+    productSubmit.date = e.target.name[4].value;
+    productSubmit.images = previewUrl;
+    
+
+    if (productSubmit.title === "") {
+      setFormValidateTitle(true);
+      isValid = false;
+    } else {
+      setFormValidateTitle(false);
+    }
+
+    if (productSubmit.brand === "") {
+      setFormValidateBrand(true);
+      isValid = false;
+    } else {
+      setFormValidateBrand(false);
+    }
+
+    if (productSubmit.price === "") {
+      setFormValidatePrice(true);
+      isValid = false;
+    }else {
+      setFormValidatePrice(false);
+    }
+
+    if (productSubmit.color === "") {
+      setFormValidateColor(true);
+      isValid = false;
+    }else {
+      setFormValidateColor(false);
+    }
+    
+    if (isValid) {
+      axios
+        .post("http://localhost:3001/products", {
+          title: productSubmit.title,
+          brand: productSubmit.brand,
+          price: productSubmit.price,
+          color: productSubmit.color,
+          images: productSubmit.images,
+        })
+        .then((res) => {
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
+  return (
+    <>
+      <Header />
+      <Container>
+        <PathBreadcrum path="Adicionar Produto" />
+        <ProductForm
+          imageUrl={imageUrl}
+          previewUrl={previewUrl}
+          fileInputRef={fileInputRef}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          formTitle="Adicionar Produto"
+          color={color}
+          setColor={setColor}
+          formValidateTitle={formValidateTitle}
+          formValidateBrand={formValidateBrand}
+          formValidatePrice={formValidatePrice}
+          formValidateColor={formValidateColor}
+        />
+      </Container>
+      <Footer />
+    </>
+  );
 };

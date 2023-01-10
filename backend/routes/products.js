@@ -19,9 +19,13 @@ router.get("/:id?", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    const result = await createProduct(req.body);
+    try {
+        const result = await createProduct(req.body);
 
-    res.send(result);
+        res.send(result);
+    } catch (error) {
+        res.status(500).send({ mensagem: error.message });
+    }
 });
 
 router.put("/:id", async (req, res) => {

@@ -13,6 +13,7 @@ import IconEdit from "./../../icons/icon-edit.svg";
 import IconTrash from "./../../icons/icon-trash.svg";
 
 interface interfaceProps extends interfaceProducts {
+    id: number;
     handleDelete: (id: number) => any;
 }
 

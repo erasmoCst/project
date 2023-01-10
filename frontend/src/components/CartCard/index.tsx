@@ -8,6 +8,7 @@ import IconMinus from "./../../icons/icon-minus.svg";
 import IconPlus from "./../../icons/icon-plus.svg";
 
 interface interfaceCart extends interfaceProducts {
+    id: number;
     qtdy: number;
     increaseQtdy: () => void;
     decreaseQtdy: () => void;
