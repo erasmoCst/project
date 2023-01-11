@@ -12,7 +12,6 @@ import { ProductForm } from "../../components/ProductForm";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
 import { Footer } from "../../components/Footer";
 
-
 let productSubmit: interfaceForm = {
   title: "",
   brand: "",
@@ -21,6 +20,9 @@ let productSubmit: interfaceForm = {
   date: new Date(),
   images: "",
 };
+
+const maxImageSize = 3000000 //3MB in bytes
+
 
 export const AddProduct = () => {
   const navigate: NavigateFunction = useNavigate();
@@ -41,7 +43,11 @@ export const AddProduct = () => {
     if (!file) {
       return;
     }
-
+    if (file.size > maxImageSize) {
+       alert(`Image size is larger than ${maxImageSize/1000000}MB, please select a smaller image`);
+       return;
+    }
+    
     setImageUrl(file);
 
     const reader = new FileReader();

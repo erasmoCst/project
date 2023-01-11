@@ -8,7 +8,6 @@ import { Container } from "react-bootstrap";
 import { Header } from "../../components/Header";
 import { PathBreadcrum } from "../../components/PathBreadcrumb";
 import { ProductForm } from "../../components/ProductForm";
-import { propTypes } from "react-bootstrap/esm/Image";
 import { Footer } from "../../components/Footer";
 
 interface interfaceFormID extends interfaceForm {
@@ -75,8 +74,6 @@ export const EditProduct = () => {
         productSubmit.date = e.target.name[4].value;
         /* productSubmit.images = e.target.name[5].value; */
         productSubmit.images = previewUrl ? previewUrl : product.images;
-        console.log(e.target);
-        console.log(productSubmit);
 
         if (productSubmit.title === "") {
             setFormValidateTitle(true);
@@ -130,11 +127,6 @@ export const EditProduct = () => {
             .then((response) => {
                 setProduct(response.data);
                 setColor(response.data.color);
-                /*                 product.price=response.data.price;
-                console.log(product.price);
-
-                console.log(response.data);
-                console.log(product); */
             })
             .catch((error) => {
                 console.log(error);

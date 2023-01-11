@@ -32,7 +32,6 @@ export const Cart = () => {
     axios
       .get("http://localhost:3001/products/" + id)
       .then((response) => {
-        //console.log(response.data);
         setProduct(response.data);
       })
       .catch((error) => {
@@ -60,7 +59,6 @@ export const Cart = () => {
 
   function changeStatus() {
     setStatus(!status);
-    console.log(status);
   }
   /*------------------------------------------*/
 
@@ -95,7 +93,6 @@ export const Cart = () => {
   };
 
   function paymentCalc(): void {
-    console.log(`Pagamento Total: ${pagamento.total}`);
     for (let i = 0; i < 13; i++) {
       while (pagamento.total >= pagamento.money[i]) {
         pagamento.quantity++;
@@ -105,8 +102,6 @@ export const Cart = () => {
       }
       pagamento.quantity = 0;
     }
-    console.log(`Pagamento Total: ${pagamento.total}`);
-    console.log(`Pagamento Total: ${pagamento.moneyQtdy}`);
   }
 
   return (
@@ -115,7 +110,6 @@ export const Cart = () => {
       <Container>
         <PathBreadcrum path="Carrinho" />
         <br />
-
         <>
           <div className="row">
             <div

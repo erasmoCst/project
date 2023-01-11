@@ -11,12 +11,17 @@ import { Card } from "./../../components/Card";
 import { ProductButton } from "../../components/ProductButton";
 import { Footer } from "./../../components/Footer";
 
+import { Modal } from "../../components/Modal";
+
 interface interfaceProductsID extends interfaceProducts {
   id: number;
 }
 
 export const Home = () => {
   const [products, setProducts] = useState<Array<interfaceProductsID>>([]);
+  const [modal, setModal] = useState<boolean>(false);
+  const [deleteID, setDeleteID] = useState<number>(0);
+  const [deleteTitle, setDeleteTitle] = useState<string>("");
 
   useEffect(() => {
     axios
@@ -29,9 +34,20 @@ export const Home = () => {
       });
   }, []);
 
+  const handleClick = (id: number, title: string) => {
+    setModal(true);
+    setDeleteID(id);
+    setDeleteTitle(title);
+  };
+
+  const handleCancel = () => {
+    setModal(false);
+  };
+
   const handleDelete = async (id: number) => {
     try {
       await axios.delete("http://localhost:3001/products/" + id);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -42,10 +58,7 @@ export const Home = () => {
       <Header />
       <Container>
         <div className="row" style={{ marginTop: "3em" }}>
-          <div
-            className="col-md-2"
-            //style={{ display: "flex", alignItems: "center" }}
-          >
+          <div className="col-md-2">
             <h2
               style={{
                 marginLeft: "1em",
@@ -83,6 +96,11 @@ export const Home = () => {
             color={product.color}
             images={product.images}
             handleDelete={handleDelete}
+            handleClick={handleClick}
+            handleCancel={handleCancel}
+            modal={modal}
+            deleteID={deleteID}
+            deleteTitle={deleteTitle}
           ></Card>
         ))}
       </Container>
