@@ -1,0 +1,96 @@
+.button-create-acc {
+  background-color: #0f4c81;
+  border: none;
+  border-radius: 7px;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 100%;
+}
+
+.button-create-acc:hover,
+.submit-login:hover {
+  background-color: #17253f;
+}
+
+.center-block-create-acc {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-acc-block-box {
+  border: 1px solid #b2b2b2;
+  box-sizing: border-box;
+  border-radius: 7px;
+  padding: 30px;
+}
+
+.login-txt-login {
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.newAccount {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #b2b2b2;
+  text-align: center;
+  position: relative;
+}
+
+.newAccount::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 35%;
+  border-top: 1px solid #b2b2b2;
+  /*  margin-top: -5px; */
+}
+
+.newAccount::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 35%;
+  border-top: 1px solid #b2b2b2;
+  /*   margin-top: -5px; */
+}
+
+.submit-login {
+  background-color: #0f4c81;
+  border: none;
+  border-radius: 7px;
+  color: #ffffff;
+  font-weight: bold;
+  /*  padding: 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+
+  min-width: 7em;
+  min-height: 3em;
+}
+
+.std-txt {
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+}

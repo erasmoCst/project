@@ -5,16 +5,20 @@ import { Cart } from "./pages/Cart";
 import { Home } from "./pages/Home";
 import { AddProduct } from "./pages/AddProduct";
 import { EditProduct } from "./pages/EditProduct";
+import { Login } from "./pages/Login";
+import { CreateAcc } from "./pages/CreateAcc";
 
 export const Rotas = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/add-produto" element={<AddProduct />} />
-                <Route path="/edit-produto/:id" element={<EditProduct />} />
-                <Route path="/cart/:id" element={<Cart />} />
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/criar-conta" element={<CreateAcc />} />
+        <Route path="/adicionar-produto" element={<AddProduct />} />
+        <Route path="/editar-produto/:id" element={<EditProduct />} />
+        <Route path="/carrinho/:id" element={<Cart />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };

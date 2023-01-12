@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { NavigateFunction, useParams, useNavigate } from "react-router-dom";
 
 import { Container } from "react-bootstrap";
 import AddIcon from "./../../icons/icon-add.svg";
@@ -11,7 +12,7 @@ import { Card } from "./../../components/Card";
 import { ProductButton } from "../../components/ProductButton";
 import { Footer } from "./../../components/Footer";
 
-import { Modal } from "../../components/Modal";
+const isValidated: boolean = false;
 
 interface interfaceProductsID extends interfaceProducts {
   id: number;
@@ -22,16 +23,22 @@ export const Home = () => {
   const [modal, setModal] = useState<boolean>(false);
   const [deleteID, setDeleteID] = useState<number>(0);
   const [deleteTitle, setDeleteTitle] = useState<string>("");
+  const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/products")
-      .then((response) => {
-        setProducts(response.data);
-      })
-      .catch((erro) => {
-        console.log(erro);
-      });
+    if(isValidated){
+      axios
+        .get("http://localhost:3001/products")
+        .then((response) => {
+          setProducts(response.data);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
+    }
+    else{
+      navigate("/login");
+    }
   }, []);
 
   const handleClick = (id: number, title: string) => {
@@ -81,7 +88,7 @@ export const Home = () => {
             <ProductButton
               type="button"
               title="Adicionar Produto"
-              to="/add-produto"
+              to="/adicionar-produto"
               icon={AddIcon}
             ></ProductButton>
           </div>

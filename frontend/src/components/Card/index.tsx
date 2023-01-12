@@ -80,10 +80,10 @@ export const Card = (props: interfaceProps) => {
           }}
         >
           <IconContext.Provider value={{ size: "2em", color: "#0F4C81" }}>
-            <Link to={"/cart/" + props.id}>
+            <Link to={"/carrinho/" + props.id}>
               <img src={IconCart} alt="cart" />
             </Link>
-            <Link to={"/edit-produto/" + props.id}>
+            <Link to={"/editar-produto/" + props.id}>
               <img src={IconEdit} alt="edit" />
             </Link>
           </IconContext.Provider>

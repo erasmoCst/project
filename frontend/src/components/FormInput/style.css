@@ -1,0 +1,45 @@
+.field-label-login {
+  position: relative;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-label-login {
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  font-size: 14px;
+  position: absolute;
+  top: -10px;
+  /* left: 65px; */
+  /* padding: 0 6px; */
+  background: #ffffff;
+  width: auto;
+}
+
+.input-field-login {
+  border: 1px solid #d9d9d9;
+  padding-left: 1em;
+  border-radius: 7px;
+  min-height: 3.2em;
+  color: #000000;
+  display: block;
+  outline: none;
+}
+
+.input-field-error-login {
+  border: 1px solid #d32f2f;
+  padding-left: 1em;
+  border-radius: 7px;
+  min-height: 3.2em;
+  color: #000000;
+  display: block;
+  outline: none;
+}
+
+input-field-error-login:focus {
+  border: 1px solid #353535;
+}
+

@@ -7,6 +7,7 @@ interface interfaceButton {
     to: string;
     type: "button" | "submit" | "reset" | undefined;
     icon: string | null;
+    width?: string;
 }
 
 export const ProductButton = (props: interfaceButton) => {
@@ -21,7 +22,7 @@ export const ProductButton = (props: interfaceButton) => {
                     style={{
                         fontWeight: "bold",
                         backgroundColor: "#0F4C81",
-                        /* margin: "20px 0px 20px 0px", */
+                        width: "100%"
                     }}
                 >
                     {props?.icon && (
