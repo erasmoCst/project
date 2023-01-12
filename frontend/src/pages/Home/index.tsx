@@ -7,12 +7,13 @@ import AddIcon from "./../../icons/icon-add.svg";
 
 import { interfaceProducts } from "../../interfaces";
 
+import "./style.css";
 import { Header } from "../../components/Header";
 import { Card } from "./../../components/Card";
 import { ProductButton } from "../../components/ProductButton";
 import { Footer } from "./../../components/Footer";
 
-const isValidated: boolean = false;
+const isValidated: boolean = true;
 
 interface interfaceProductsID extends interfaceProducts {
   id: number;
@@ -26,7 +27,7 @@ export const Home = () => {
   const navigate: NavigateFunction = useNavigate();
 
   useEffect(() => {
-    if(isValidated){
+    if (isValidated) {
       axios
         .get("http://localhost:3001/products")
         .then((response) => {
@@ -35,8 +36,7 @@ export const Home = () => {
         .catch((erro) => {
           console.log(erro);
         });
-    }
-    else{
+    } else {
       navigate("/login");
     }
   }, []);
@@ -64,27 +64,16 @@ export const Home = () => {
     <>
       <Header />
       <Container>
-        <div className="row" style={{ marginTop: "3em" }}>
+        <br />
+        <div className="row">
           <div className="col-md-2">
-            <h2
-              style={{
-                marginLeft: "1em",
-                textAlign: "right",
-                fontWeight: "bold",
-              }}
+            <h2 className="home-title"
             >
               Produtos
             </h2>
           </div>
-          <div className="col-md-6"></div>
-          <div
-            className="col-4"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <div className="col-6"></div>
+          <div className="col-4 home-center">
             <ProductButton
               type="button"
               title="Adicionar Produto"
@@ -102,12 +91,12 @@ export const Home = () => {
             price={product.price}
             color={product.color}
             images={product.images}
-            handleDelete={handleDelete}
-            handleClick={handleClick}
-            handleCancel={handleCancel}
             modal={modal}
             deleteID={deleteID}
             deleteTitle={deleteTitle}
+            handleDelete={handleDelete}
+            handleClick={handleClick}
+            handleCancel={handleCancel}
           ></Card>
         ))}
       </Container>

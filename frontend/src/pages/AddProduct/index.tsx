@@ -21,7 +21,7 @@ let productSubmit: interfaceForm = {
   images: "",
 };
 
-const maxImageSize = 3000000 //3MB in bytes
+/* const maxImageSize = 3000000 //3MB in bytes */
 
 
 export const AddProduct = () => {
@@ -43,10 +43,10 @@ export const AddProduct = () => {
     if (!file) {
       return;
     }
-    if (file.size > maxImageSize) {
+/*     if (file.size > maxImageSize) {
        alert(`Image size is larger than ${maxImageSize/1000000}MB, please select a smaller image`);
        return;
-    }
+    } */
     
     setImageUrl(file);
 

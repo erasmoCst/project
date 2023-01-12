@@ -1,0 +1,14 @@
+.cart-card-full-row {
+  height: 100%;
+}
+
+.cart-card-row {
+  height: 50%;
+  border-top: 1px solid #b2b2b2;
+}
+
+.cart-card-button {
+  margin-left: 10px;
+  border: none;
+  background-color: #ffffff;
+}

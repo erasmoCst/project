@@ -11,17 +11,20 @@ import { IconContext } from "react-icons/lib";
 import IconCart from "./../../icons/icon-cart.svg";
 import IconEdit from "./../../icons/icon-edit.svg";
 import IconTrash from "./../../icons/icon-trash.svg";
+
+import "./style.css";
 import { Modal } from "../Modal";
 
 interface interfaceProps extends interfaceProducts {
   id: number;
   modal: boolean;
 
+  deleteID: number;
+  deleteTitle: string;
+
   handleDelete: (id: number) => any;
   handleClick: (id: number, title: string) => void;
   handleCancel: () => void;
-  deleteID: number;
-  deleteTitle: string;
 }
 
 export const Card = (props: interfaceProps) => {
@@ -34,51 +37,32 @@ export const Card = (props: interfaceProps) => {
         handleCancel={props.handleCancel}
         modal={props.modal}
       ></Modal>
-      <Row style={{ marginTop: "3.5em", marginBottom: "3.5em" }}>
-        <div className="col-md-2" style={{ textAlign: "center" }}>
+
+      <div className="row card-space">
+        <div className="col-2 card-txt-center">
           <img className="w-50" src={props.images} />
         </div>
-        <div className="col-md-6">
-          <p style={{ margin: "0", fontWeight: "bold" }}>{props.title}</p>
-          <p
-            style={{
-              margin: "0",
-              fontSize: "90%",
-              fontWeight: "normal",
-            }}
-          >
-            {props.brand}
-          </p>
-          <p
-            style={{
-              margin: "0",
-              fontSize: "150%",
-              fontWeight: "bold",
-              color: "#0F4C81",
-            }}
-          >
-            {formatBRL(props.price)}
-          </p>
-          <p
-            style={{
-              margin: "0",
-              fontSize: "90%",
-              fontWeight: "normal",
-            }}
-          >
-            Cor: {props.color}
-          </p>
+
+        <div className="col-6 center-vertical">
+          <div className="container">
+            <div className="row">
+              <span>
+                <strong>{props.title}</strong>
+              </span>
+            </div>
+            <div className="row">
+              <p className="card-txt">{props.brand}</p>
+            </div>
+            <div className="row">
+              <p className="card-txt-price">{formatBRL(props.price)}</p>
+            </div>
+            <div className="row">
+              <p className="card-txt">Cor: {props.color}</p>
+            </div>
+          </div>
         </div>
 
-        <div
-          className="col-md-4"
-          style={{
-            verticalAlign: "center",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-evenly",
-          }}
-        >
+        <div className="col-md-4 card-icon">
           <IconContext.Provider value={{ size: "2em", color: "#0F4C81" }}>
             <Link to={"/carrinho/" + props.id}>
               <img src={IconCart} alt="cart" />
@@ -88,20 +72,15 @@ export const Card = (props: interfaceProps) => {
             </Link>
           </IconContext.Provider>
           <button
+            className="card-button"
             onClick={() => {
               props.handleClick(props.id, props.title);
-              /* props.handleDelete(props.id);
-              window.location.reload(); */
-            }}
-            style={{
-              border: "none",
-              backgroundColor: "#FFFFFF",
             }}
           >
             <img src={IconTrash} alt="delete" />
           </button>
         </div>
-      </Row>
+      </div>
     </Container>
   );
 };

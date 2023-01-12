@@ -13,59 +13,27 @@ interface interfaceProps {
 }
 
 export const Modal = (props: interfaceProps) => {
-
   return (
     <div
+      className="modal-show"
       style={{
         visibility: props.modal ? "visible" : "hidden",
-        position: "fixed",
-        zIndex: "3",
-        left: "0",
-        top: "0",
-        width: " 100%",
-        height: "100%",
-        backgroundColor: "rgb(217,217,217,0.2)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
-      <div className="modalCard">
+      <div className="modal-card">
         <div>
           <div className="row">
-            <p
-              className="delete"
-              style={{
-                marginBottom: "0px",
-                display: "flex",
-                alignItems:
-                  "center" /* paddingTop: "15%", paddingLeft: "15%"  */,
-                justifyContent: "center",
-              }}
-            >
-              Deseja realmente deletar o produto
-            </p>
-            <p
-              className="delete"
-              style={{
-                marginTop: "0px",
-                display: "flex",
-                alignItems:
-                  "center" /* paddingTop: "15%", paddingLeft: "15%"  */,
-                justifyContent: "center",
-              }}
-            >
-              {props.title}?
-            </p>
+            <p className="delete">Deseja realmente deletar o produto</p>
+            <p className="delete">{props.title}?</p>
           </div>
+          <br />
           <div className="row">
-            <div style={{ display: "flex", justifyContent: "space-around" }}>
+            <div className="button-space">
               <button className="button" onClick={() => props.handleCancel()}>
                 Cancelar
               </button>
               <button
-                className="button"
-                style={{ backgroundColor: "#D32f2f" }}
+                className="button button-red"
                 onClick={() => props.handleDelete(props.id)}
               >
                 Deletar
