@@ -1,7 +1,7 @@
 /*---------- I N T E R F A C E S ----------*/
 import { Home } from "./../pages/Home";
 import { Login } from "./../pages/Login"
-import { CreateAcc } from "./../pages/CreateAcc"
+import { SignUp } from "../pages/SignUp"
 
 import React, { createContext, useState } from 'react';
 
@@ -14,7 +14,7 @@ function Parent() {
     <isUserValidated.Provider value={globalValue}>
       <Home />
       <Login />
-      <CreateAcc setGlobalValue={setGlobalValue}/>
+      <SignUp setGlobalValue={setGlobalValue}/>
     </isUserValidated.Provider>
   );
 }

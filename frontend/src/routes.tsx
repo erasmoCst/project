@@ -6,7 +6,7 @@ import { Home } from "./pages/Home";
 import { AddProduct } from "./pages/AddProduct";
 import { EditProduct } from "./pages/EditProduct";
 import { Login } from "./pages/Login";
-import { CreateAcc } from "./pages/CreateAcc";
+import { SignUp } from "./pages/SignUp";
 
 export const Rotas = () => {
   return (
@@ -14,7 +14,7 @@ export const Rotas = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/criar-conta" element={<CreateAcc />} />
+        <Route path="/criar-conta" element={<SignUp />} />
         <Route path="/adicionar-produto" element={<AddProduct />} />
         <Route path="/editar-produto/:id" element={<EditProduct />} />
         <Route path="/carrinho/:id" element={<Cart />} />

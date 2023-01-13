@@ -28,7 +28,7 @@ let userSubmit: interfaceUser = {
   password_confirm: "",
 };
 
-export const CreateAcc = ({setGlobalValue}:any) => {
+export const SignUp = ({setGlobalValue}:any) => {
   const navigate: NavigateFunction = useNavigate();
 
   const [formValidateEmail, setFormValidateEmail] = useState<boolean>(false);
