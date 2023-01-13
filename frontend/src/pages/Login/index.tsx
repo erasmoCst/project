@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 import ViptechLogo from "./../../images/viptech-logo-color.png";
 
@@ -8,6 +9,7 @@ import { Link } from "react-router-dom";
 
 import { FormInput } from "./../../components/FormInput/";
 import { ProductButton } from "../../components/ProductButton";
+import axios from "axios";
 
 interface interfacelogin {
   email: string;
@@ -20,9 +22,10 @@ let loginSubmit: interfacelogin = {
 };
 
 export const Login = () => {
+  const navigate: NavigateFunction = useNavigate();
+
   const [formEmptyEmail, setFormEmptyEmail] = useState<boolean>(false);
-  const [formEmptyPassword, setFormEmptyPassword] =
-    useState<boolean>(false);
+  const [formEmptyPassword, setFormEmptyPassword] = useState<boolean>(false);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -46,6 +49,18 @@ export const Login = () => {
       setFormEmptyPassword(false);
     }
     if (isValid) {
+      axios
+        .post("http://localhost:3001/login", {
+          email: loginSubmit.email,
+          password: loginSubmit.password,
+        })
+        .then((res) => {
+          console.log(res);
+          navigate("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
@@ -61,49 +76,59 @@ export const Login = () => {
             <span className="login-txt-login">Acesse sua conta</span>
           </div>
 
-          <form onSubmit={handleSubmit}>
-            <div className="row">
-              {/* USERNAME INPUT */}
-              <FormInput
-                inputName="Email"
-                type="email"
-                placeHolder="Digite seu nome de usuário"
-                defaultValue=""
-                errorMsg="Por favor, preencha esse campo."
-                formValidate={formEmptyEmail}
-                width="80%"
-                labelLeft="65px"
-              />
-            </div>
-
-            <div className="row">
-              {/* PASSWORD INPUT */}
-              <FormInput
-                inputName="Senha"
-                type="password"
-                placeHolder="Digite sua senha"
-                defaultValue=""
-                errorMsg={(formEmptyPassword||formEmptyEmail)?"Por favor, preencha esse campo.":"a"}
-                formValidate={formEmptyPassword}
-                width="80%"
-                labelLeft="65px"
-              />
-            </div>
-
-            <div className="row">
-              <div className="col-1"></div>
-              <div className="col-5 center-vertical">
-                <Link to="/esqueci-senha">
-                  <span className="forgot-password">Esqueceu a senha?</span>
-                </Link>
+          <div>
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                {/* USERNAME INPUT */}
+                <FormInput
+                  inputName="Email"
+                  type="email"
+                  placeHolder="Digite seu nome de usuário"
+                  defaultValue=""
+                  errorMsg="Por favor, preencha esse campo."
+                  formValidate={formEmptyEmail}
+                  width="80%"
+                  labelLeft="65px"
+                />
               </div>
-              <div className="col-1"></div>
 
-              <div className="col-4 center-vertical">
-                <input type="submit" value="Acessar" className="submit-login" />
+              <div className="row">
+                {/* PASSWORD INPUT */}
+                <FormInput
+                  inputName="Senha"
+                  type="password"
+                  placeHolder="Digite sua senha"
+                  defaultValue=""
+                  errorMsg={
+                    formEmptyPassword || formEmptyEmail
+                      ? "Por favor, preencha esse campo."
+                      : "a"
+                  }
+                  formValidate={formEmptyPassword}
+                  width="80%"
+                  labelLeft="65px"
+                />
               </div>
-            </div>
-          </form>
+
+              <div className="row">
+                <div className="col-1"></div>
+                <div className="col-5 center-vertical">
+                  <Link to="/esqueci-senha">
+                    <span className="forgot-password">Esqueceu a senha?</span>
+                  </Link>
+                </div>
+                <div className="col-1"></div>
+
+                <div className="col-5 center-vertical">
+                  <input
+                    type="submit"
+                    value="Acessar"
+                    className="submit-login"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
           <br />
         </div>
 

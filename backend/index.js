@@ -5,6 +5,7 @@ const morgan = require("morgan");
 
 const products = require("./routes/products");
 const users = require("./routes/users");
+const login = require("./routes/login");
 const connection = require("./models");
 
 const cors = require("cors");
@@ -15,6 +16,7 @@ app.use(express.json());//Utiliza o modulo de conversão (do express) para Json 
 app.use(morgan("dev"));
 app.use(cors());
 /* app.use(verifyToken); */
+app.use("/login", login);
 app.use("/products", products);
 app.use("/users", users);
 

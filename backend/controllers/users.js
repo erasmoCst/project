@@ -39,7 +39,7 @@ const findUser = async (email = null) => {
     return await users.findAll();
   } catch (error) {
     return false;
-   /*  res.status(500).send({ mensagem: error.message }); */
+    /*  res.status(500).send({ mensagem: error.message }); */
   }
 };
 
@@ -68,23 +68,31 @@ const remover = async (id) => {
   });
 };
 
-const login = async (email, senha) => {
+const login = async (email, password) => {
   try {
-    const result = await cliente.scope("login").findOne({
+    const result = await users.findOne({
       where: {
         email,
       },
     });
 
-    const senhaValida = bcrypt.compare(senha, result.senha);
+    if (result) {
+      /* const isPasswordOk = bcrypt.compareSync(password, result.password); */
 
-    if (!senhaValida) {
-      return false;
+      if (password === result.password) {
+        return true;
+      } else return false;
     }
+    /*       if (isPasswordOk) {
 
-    return jwt.sign({ id: result.id }, palavraChave, {
-      expiresIn: "24h",
-    });
+        return true;
+      }
+    } else {
+      return isPasswordOk;
+      return false; */
+    /*     } else {
+      return res.status(401).send("Authentication failed");
+    } */
   } catch (error) {
     throw error;
   }

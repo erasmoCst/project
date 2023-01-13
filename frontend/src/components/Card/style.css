@@ -11,8 +11,10 @@
 }
 
 .card-space {
-  margin-top: 3.5em;
-  margin-bottom: 3.5em;
+/*   margin-top: 3.5em;
+  margin-bottom: 3.5em; */
+  padding-top: 3em;
+  padding-bottom: 2em;
 }
 
 .card-txt-center {
