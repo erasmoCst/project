@@ -88,7 +88,7 @@ export const Login = () => {
                   errorMsg="Por favor, preencha esse campo."
                   formValidate={formEmptyEmail}
                   width="80%"
-                  labelLeft="65px"
+                  labelLeft="60px"
                 />
               </div>
 
@@ -106,20 +106,23 @@ export const Login = () => {
                   }
                   formValidate={formEmptyPassword}
                   width="80%"
-                  labelLeft="65px"
+                  labelLeft="60px"
                 />
               </div>
 
               <div className="row">
                 <div className="col-1"></div>
-                <div className="col-5 center-vertical">
+                <div
+                  className="col-5 center-vertical"
+                  style={{ marginLeft: "14px" }}
+                >
                   <Link to="/esqueci-senha">
                     <span className="forgot-password">Esqueceu a senha?</span>
                   </Link>
                 </div>
                 <div className="col-1"></div>
 
-                <div className="col-5 center-vertical">
+                <div className="col-4 center-vertical">
                   <input
                     type="submit"
                     value="Acessar"

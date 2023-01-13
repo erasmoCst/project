@@ -41,28 +41,30 @@ export const FormInput = (props: interfaceFormInput) => {
   return (
     <>
       <div className="row">
-        <div className="field-label-login">
-          <label
-            className="form-label-login"
-            style={{
-              color: props.formValidate ? "#D32F2F" : "#000000",
-              left: props.labelLeft,
-            }}
-          >
-            {props.inputName}
-          </label>
-          <input
-            name="name"
-            type={props.type}
-            className={
-              props.formValidate ? "input-field-error-login" : "input-field"
-            }
-            style={{
-              width: props.width,
-            }}
-            placeholder={props.placeHolder}
-            defaultValue={props.defaultValue}
-          />
+        <div style={{ marginLeft: "10px" }}>
+          <div className="field-label-login">
+            <label
+              className="form-label-login"
+              style={{
+                color: props.formValidate ? "#D32F2F" : "#000000",
+                left: props.labelLeft,
+              }}
+            >
+              {props.inputName}
+            </label>
+            <input
+              name="name"
+              type={props.type}
+              className={
+                props.formValidate ? "input-field-error-login" : "input-field"
+              }
+              style={{
+                width: props.width,
+              }}
+              placeholder={props.placeHolder}
+              defaultValue={props.defaultValue}
+            />
+          </div>
         </div>
       </div>
 
