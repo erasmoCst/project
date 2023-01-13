@@ -6,25 +6,27 @@ const { Router } = require("express");
     checkSchema,
 } = require("express-validator"); */
 const {
+    findUser,
     createUser,
     atualizar,
     remover,
-    buscar,
 } = require("../controllers/users");
 const router = Router();
+
 /* const verifyToken = require("../middlewares/auth");
 const validation = require("../middlewares/validation");
 const get = require("../schemas/cliente/get");
 const post = require("../schemas/cliente/post");
  */
+
 router.get(
-    "/:id?",
+    "/:email?",
 /*     verifyToken,
     checkSchema(get),
     validation, */
     async (req, res) => {
         try {
-            const result = await buscar(req.params.id);
+            const result = await findUser(req.params.email);
 
             res.send(result);
         } catch (error) {

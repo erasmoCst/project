@@ -23,7 +23,6 @@ let productSubmit: interfaceForm = {
 
 /* const maxImageSize = 3000000 //3MB in bytes */
 
-
 export const AddProduct = () => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -43,11 +42,11 @@ export const AddProduct = () => {
     if (!file) {
       return;
     }
-/*     if (file.size > maxImageSize) {
+    /*     if (file.size > maxImageSize) {
        alert(`Image size is larger than ${maxImageSize/1000000}MB, please select a smaller image`);
        return;
     } */
-    
+
     setImageUrl(file);
 
     const reader = new FileReader();
@@ -57,6 +56,7 @@ export const AddProduct = () => {
     reader.readAsDataURL(file);
   };
 
+  
   function handleSubmit(e: any): void {
     e.preventDefault();
 
@@ -68,7 +68,6 @@ export const AddProduct = () => {
     productSubmit.color = e.target.name[3].value;
     productSubmit.date = e.target.name[4].value;
     productSubmit.images = previewUrl;
-    
 
     if (productSubmit.title === "") {
       setFormValidateTitle(true);
@@ -87,17 +86,17 @@ export const AddProduct = () => {
     if (productSubmit.price === "") {
       setFormValidatePrice(true);
       isValid = false;
-    }else {
+    } else {
       setFormValidatePrice(false);
     }
 
     if (productSubmit.color === "") {
       setFormValidateColor(true);
       isValid = false;
-    }else {
+    } else {
       setFormValidateColor(false);
     }
-    
+
     if (isValid) {
       axios
         .post("http://localhost:3001/products", {

@@ -40,47 +40,45 @@ interface interfaceFormInput {
 export const FormInput = (props: interfaceFormInput) => {
   return (
     <>
-      <Row>
-          <div className="field-label-login">
-            <label
-              className="form-label-login"
-              style={{
-                color: props.formValidate ? "#D32F2F" : "#000000",
-                left: props.labelLeft
-              }}
-            >
-              {props.inputName}
-            </label>
-            <input
-              name="name"
-              type={props.type}
-              className={
-                props.formValidate ? "input-field-error-login" : "input-field"
-              }
-              style={{
-                width: props.width,
-              }}
-              placeholder={props.placeHolder}
-              defaultValue={props.defaultValue}
-            />
+      <div className="row">
+        <div className="field-label-login">
+          <label
+            className="form-label-login"
+            style={{
+              color: props.formValidate ? "#D32F2F" : "#000000",
+              left: props.labelLeft,
+            }}
+          >
+            {props.inputName}
+          </label>
+          <input
+            name="name"
+            type={props.type}
+            className={
+              props.formValidate ? "input-field-error-login" : "input-field"
+            }
+            style={{
+              width: props.width,
+            }}
+            placeholder={props.placeHolder}
+            defaultValue={props.defaultValue}
+          />
         </div>
-      </Row>
+      </div>
 
-      <Row>
-        {
+      <div className="row">
+        <div className="col-1"></div>
+        <div className="col-11">
           <p
+            className="input-txt-error"
             style={{
               visibility: props.formValidate ? "visible" : "hidden",
-              color: "#D32F2F",
-              fontWeight: "normal",
-              letterSpacing: "0.4px",
-              fontSize: "14px",
             }}
           >
             {props.errorMsg}
           </p>
-        }
-      </Row>
+        </div>
+      </div>
     </>
   );
 };

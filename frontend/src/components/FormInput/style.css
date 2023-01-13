@@ -39,6 +39,13 @@
   outline: none;
 }
 
+.input-txt-error{
+  color: #D32F2F;
+  font-weight: normal;
+  letter-spacing: 0.4px;
+  font-size: 14px;
+}
+
 input-field-error-login:focus {
   border: 1px solid #353535;
 }

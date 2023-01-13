@@ -1,5 +1,5 @@
-import React from "react";
-import { Row } from "react-bootstrap";
+import React, { useState } from "react";
+
 import ViptechLogo from "./../../images/viptech-logo-color.png";
 
 import "./style.css";
@@ -9,9 +9,46 @@ import { Link } from "react-router-dom";
 import { FormInput } from "./../../components/FormInput/";
 import { ProductButton } from "../../components/ProductButton";
 
-const handleSubmit = () => {};
+interface interfacelogin {
+  email: string;
+  password: string;
+}
 
-export const Login = (props: any) => {
+let loginSubmit: interfacelogin = {
+  email: "",
+  password: "",
+};
+
+export const Login = () => {
+  const [formEmptyEmail, setFormEmptyEmail] = useState<boolean>(false);
+  const [formEmptyPassword, setFormEmptyPassword] =
+    useState<boolean>(false);
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+
+    let isValid = true;
+
+    loginSubmit.email = e.target.name[0].value;
+    loginSubmit.password = e.target.name[1].value;
+
+    if (loginSubmit.email === "") {
+      setFormEmptyEmail(true);
+      isValid = false;
+    } else {
+      setFormEmptyEmail(false);
+    }
+
+    if (loginSubmit.password === "") {
+      setFormEmptyPassword(true);
+      isValid = false;
+    } else {
+      setFormEmptyPassword(false);
+    }
+    if (isValid) {
+    }
+  };
+
   return (
     <>
       <div className="center-block-login">
@@ -19,69 +56,61 @@ export const Login = (props: any) => {
           <div className="center-login" style={{ margin: "50px" }}>
             <img src={ViptechLogo} alt="Viptech Logo"></img>
           </div>
+
           <div className="center-login">
             <span className="login-txt-login">Acesse sua conta</span>
           </div>
+
           <form onSubmit={handleSubmit}>
-            <Row>
+            <div className="row">
               {/* USERNAME INPUT */}
               <FormInput
                 inputName="Email"
                 type="email"
                 placeHolder="Digite seu nome de usuário"
                 defaultValue=""
-                errorMsg="Email ou senha inválidos"
-                formValidate={false}
+                errorMsg="Por favor, preencha esse campo."
+                formValidate={formEmptyEmail}
                 width="80%"
                 labelLeft="65px"
               />
-            </Row>
-            <Row>
+            </div>
+
+            <div className="row">
               {/* PASSWORD INPUT */}
               <FormInput
                 inputName="Senha"
                 type="password"
                 placeHolder="Digite sua senha"
                 defaultValue=""
-                errorMsg="Email ou senha inválidos"
-                formValidate={false}
+                errorMsg={(formEmptyPassword||formEmptyEmail)?"Por favor, preencha esse campo.":"a"}
+                formValidate={formEmptyPassword}
                 width="80%"
                 labelLeft="65px"
               />
-            </Row>
+            </div>
 
-            <Row>
+            <div className="row">
               <div className="col-1"></div>
-              <div
-                className="col-5"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
+              <div className="col-5 center-vertical">
                 <Link to="/esqueci-senha">
                   <span className="forgot-password">Esqueceu a senha?</span>
                 </Link>
               </div>
               <div className="col-1"></div>
 
-              <div
-                className="col-4"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
+              <div className="col-4 center-vertical">
                 <input type="submit" value="Acessar" className="submit-login" />
               </div>
-            </Row>
+            </div>
           </form>
-
           <br />
         </div>
+
         <div className="newAccount">
           <p>É novo na Viptech?</p>
         </div>
+
         <div>
           <Link to="/criar-conta">
             <button className="button-account"> Criar conta Viptech</button>
