@@ -7,21 +7,22 @@ const { Router } = require("express");
 } = require("express-validator"); */
 const {
     findUser,
-    createUser,
+    signUp,
     atualizar,
     remover,
 } = require("../controllers/users");
-const router = Router();
 
+const { authCreateUser } = require("../middlewares/auth");
+
+const router = Router();
 /* const verifyToken = require("../middlewares/auth");
-const validation = require("../middlewares/validation");
 const get = require("../schemas/cliente/get");
 const post = require("../schemas/cliente/post");
  */
 
 router.get(
     "/:email?",
-/*     verifyToken,
+    /*     verifyToken,
     checkSchema(get),
     validation, */
     async (req, res) => {
@@ -35,15 +36,21 @@ router.get(
     }
 );
 
-router.post("/", /* checkSchema(post), validation, */ async (req, res) => {
-    try {
-        const result = await createUser(req.body);
+router.post(
+    "/" /* checkSchema(post), validation, */,
+    authCreateUser,
+    async (req, res) => {
+        try {
+            const { first_name, last_name, email, password } = req.body;
 
-        res.send(result);
-    } catch (error) {
-        res.status(500).send({ mensagem: error.message });
+            const result = await signUp(first_name, last_name, email, password);
+
+            res.send(result);
+        } catch (error) {
+            res.status(500).send({ mensagem: error.message });
+        }
     }
-});
+);
 
 /* router.put("/:id", verifyToken, async (req, res) => {
     try {
