@@ -23,10 +23,11 @@
   transform: translate(-50%, -50%);
 }
 
-.login-block-login {
+.login-block-box {
   border: 1px solid #b2b2b2;
   box-sizing: border-box;
   border-radius: 7px;
+  padding: 10px;
 }
 
 .center-login {

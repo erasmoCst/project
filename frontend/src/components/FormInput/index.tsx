@@ -41,7 +41,7 @@ export const FormInput = (props: interfaceFormInput) => {
   return (
     <>
       <div className="row">
-        <div style={{ marginLeft: "10px" }}>
+        <div /* style={{ marginLeft: "10px" }} */>
           <div className="field-label-login">
             <label
               className="form-label-login"
@@ -56,7 +56,7 @@ export const FormInput = (props: interfaceFormInput) => {
               name="name"
               type={props.type}
               className={
-                props.formValidate ? "input-field-error-login" : "input-field"
+                props.formValidate ? "input-field-error-login" : "input-field-login"
               }
               style={{
                 width: props.width,
@@ -72,7 +72,7 @@ export const FormInput = (props: interfaceFormInput) => {
         <div className="col-1"></div>
         <div className="col-11">
           <p
-            className="input-txt-error"
+            className="txt-error"
             style={{
               visibility: props.formValidate ? "visible" : "hidden",
             }}

@@ -25,22 +25,18 @@ const login = async (email, password) => {
                 email,
             },
         });
+        
+        const isPasswordOk = bcrypt.compareSync(password, result.password);
 
-        if (result) {
-            const isPasswordOk = await bcrypt.compare(
-                password,
-                result.password
-            );
-            /*             if (isPasswordOk) {
-                return jwt.sign({ id: result.id }, secretKey, {
-                    expiresIn: "24h",
-                });
-            } */
-            return jwt.sign({ id: result.id }, secretKey, {
-                expiresIn: "24h",
-            });
-            /* return res.status(401).send("E-mail e/ou senha inválidos."); */
+        if (!isPasswordOk) {
+            return false;
         }
+
+        return jwt.sign({ id: result.id }, secretKey, {
+            expiresIn: "24h",
+        });
+
+        //return res.status(401).send("E-mail e/ou senha inválidos.");
     } catch (error) {
         throw error;
     }
