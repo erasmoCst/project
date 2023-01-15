@@ -28,7 +28,8 @@
   border: 1px solid #b2b2b2;
   box-sizing: border-box;
   border-radius: 7px;
-  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .login-txt-login {

@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.button-account:hover,.submit-login:hover {
+.button-account:hover,.form-button-submit:hover {
   background-color: #17253f;
 }
 

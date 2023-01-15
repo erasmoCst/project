@@ -126,138 +126,149 @@ export const SignUp = ({ setGlobalValue }: any) => {
     return (
         <>
             <div className="center-block-create-acc">
-                <div className="create-acc-block-box">
-                    <div className="center"/*  style={{ margin: "20px" }} */>
-                        <Link to="/login">
-                            <img
-                                src={ViptechLogo}
-                                alt="Viptech Logo"
-                                height="36"
-                                width="195"
-                            ></img>
-                        </Link>
-                    </div>
-
-                    <div>
-                        <span className="std-txt">Crie sua conta Viptech</span>
-                    </div>
-
-                    <br />
-
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <div className="row">
-                                <div className="col-6">
-                                    <FormInput
-                                        inputName="Nome"
-                                        type="text"
-                                        placeHolder="Primeiro Nome"
-                                        defaultValue=""
-                                        errorMsg="Por favor, preencha este campo"
-                                        formValidate={formValidateFirstName}
-                                        width="95%"
-                                        labelLeft="20px"
-                                    />
-                                </div>
-
-                                <div className="col-6">
-                                    <FormInput
-                                        inputName="Sobrenome"
-                                        type="text"
-                                        placeHolder="Sobrenome"
-                                        defaultValue=""
-                                        errorMsg="Por favor, preencha este campo"
-                                        formValidate={formValidateLastName}
-                                        width="95%"
-                                        labelLeft="20px"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-12">
-                                    <FormInput
-                                        inputName="Email"
-                                        type="email"
-                                        placeHolder="exemplo@email.com"
-                                        defaultValue=""
-                                        errorMsg={
-                                            formValidateEmail
-                                                ? "Por favor, preencha este campo"
-                                                : formValidateUsedEmail
-                                                ? "Email já cadastrado. Insira outro email."
-                                                : "a"
-                                        }
-                                        formValidate={
-                                            formValidateEmail
-                                                ? formValidateEmail
-                                                : formValidateUsedEmail
-                                        }
-                                        width="98%"
-                                        labelLeft="20px"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-12">
-                                    <FormInput
-                                        inputName="Senha"
-                                        type="password"
-                                        placeHolder="Pelo menos 6 caracteres"
-                                        defaultValue=""
-                                        errorMsg="Pelo menos 6 caracteres"
-                                        formValidate={formValidatePassword}
-                                        width="98%"
-                                        labelLeft="20px"
-                                    />
-                                </div>
-                            </div>
-
-                            <div className="row">
-                                <div className="col-12">
-                                    <FormInput
-                                        inputName="Confirmar Senha"
-                                        type="password"
-                                        placeHolder=""
-                                        defaultValue=""
-                                        errorMsg="As senha não são iguais. Tente novamente."
-                                        formValidate={
-                                            formValidatePasswordConfirm
-                                        }
-                                        width="98%"
-                                        labelLeft="20px"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="row">
+                <div className="row">
+                    <div className="col-1"></div>
+                    <div className="col-10">
+                        <div className="create-acc-block-box">
                             <div
-                                style={{
-                                    paddingLeft: "20px",
-                                    paddingRight: "20px",
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                }}
+                                className="center" /* style={{ marginTop: "20px" }} */
                             >
-                                <div className="center">
-                                    <Link to="/login">
-                                        <span className="forgot-password">
-                                            Fazer login
-                                        </span>
-                                    </Link>
-                                </div>
-                                <div>
-                                    <input
-                                        type="submit"
-                                        value="Criar Conta"
-                                        className="button-create-acc"
-                                    />
-                                </div>
+                                <Link to="/login">
+                                    <img
+                                        src={ViptechLogo}
+                                        alt="Viptech Logo"
+                                        height="36"
+                                        width="195"
+                                    ></img>
+                                </Link>
                             </div>
+
+                            <br />
+
+                            <div>
+                                <span className="std-txt">
+                                    Crie sua conta Viptech
+                                </span>
+                            </div>
+
+                            <br />
+                            <form onSubmit={handleSubmit}>
+                                <div className="row">
+                                    <div className="col-1"></div>
+                                    <div className="col-10">
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <FormInput
+                                                    inputName="Nome"
+                                                    type="text"
+                                                    placeHolder="Primeiro Nome"
+                                                    defaultValue=""
+                                                    errorMsg="Por favor, preencha este campo"
+                                                    formValidate={
+                                                        formValidateFirstName
+                                                    }
+                                                    width="100%"
+                                                    labelLeft="20px"
+                                                />
+                                            </div>
+
+                                            <div className="col-6">
+                                                <FormInput
+                                                    inputName="Sobrenome"
+                                                    type="text"
+                                                    placeHolder="Sobrenome"
+                                                    defaultValue=""
+                                                    errorMsg="Por favor, preencha este campo"
+                                                    formValidate={
+                                                        formValidateLastName
+                                                    }
+                                                    width="100%"
+                                                    labelLeft="20px"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <FormInput
+                                                    inputName="Email"
+                                                    type="email"
+                                                    placeHolder="exemplo@email.com"
+                                                    defaultValue=""
+                                                    errorMsg={
+                                                        formValidateEmail
+                                                            ? "Por favor, preencha este campo"
+                                                            : formValidateUsedEmail
+                                                            ? "Email já cadastrado. Insira outro email."
+                                                            : "a"
+                                                    }
+                                                    formValidate={
+                                                        formValidateEmail
+                                                            ? formValidateEmail
+                                                            : formValidateUsedEmail
+                                                    }
+                                                    width="100%"
+                                                    labelLeft="20px"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <FormInput
+                                                    inputName="Senha"
+                                                    type="password"
+                                                    placeHolder="Pelo menos 6 caracteres"
+                                                    defaultValue=""
+                                                    errorMsg="Pelo menos 6 caracteres"
+                                                    formValidate={
+                                                        formValidatePassword
+                                                    }
+                                                    width="100%"
+                                                    labelLeft="20px"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <FormInput
+                                                    inputName="Confirmar Senha"
+                                                    type="password"
+                                                    placeHolder=""
+                                                    defaultValue=""
+                                                    errorMsg="As senha não são iguais. Tente novamente."
+                                                    formValidate={
+                                                        formValidatePasswordConfirm
+                                                    }
+                                                    width="100%"
+                                                    labelLeft="20px"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-1"></div>
+                                    <div className="col-1"></div>
+                                    <div className="col-10">
+                                        <div className="form-options-space">
+                                            <Link to="/login">
+                                                <span className="forgot-password">
+                                                    Fazer login
+                                                </span>
+                                            </Link>
+                                            <input
+                                                type="submit"
+                                                value="Criar Conta"
+                                                className="form-button-submit"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-1"></div>
+                                </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
+                    <div className="col-1"></div>
                 </div>
             </div>
         </>

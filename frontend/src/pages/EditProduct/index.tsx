@@ -122,15 +122,24 @@ export const EditProduct = () => {
     }
 
     useEffect(() => {
-        axios
-            .get("http://localhost:3001/products/" + id)
-            .then((response) => {
-                setProduct(response.data);
-                setColor(response.data.color);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        if (localStorage.getItem("tokens")) {
+            const isValidated = localStorage.getItem("tokens");
+            if (isValidated) {
+                axios
+                    .get("http://localhost:3001/products/" + id)
+                    .then((response) => {
+                        setProduct(response.data);
+                        setColor(response.data.color);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            } else {
+                navigate("/login");
+            }
+        } else {
+            navigate("/login");
+        }
     }, [id]);
 
     return (
