@@ -1,0 +1,29 @@
+.card-button {
+  border: none;
+  background-color: #ffffff;
+}
+
+.card-icon {
+  display: flex;
+  vertical-align: center;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card-space {
+/*   margin-top: 3.5em;
+  margin-bottom: 3.5em; */
+  padding-top: 3em;
+  padding-bottom: 2em;
+}
+
+.card-txt-center {
+  text-align: center;
+}
+
+.card-txt-price {
+  margin: 0;
+  font-size: 150%;
+  font-weight: bold;
+  color: #0f4c81;
+}

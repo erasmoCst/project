@@ -8,7 +8,9 @@ const {
     deleteProduct,
 } = require("../controllers/products");
 
-router.get("/:id?", async (req, res) => {
+const tokenValidation = require("../middlewares/tokenValidation");
+
+router.get("/:id?", tokenValidation, async (req, res) => {
     try {
         const result = await searchProduct(req.params.id);
 
@@ -18,7 +20,7 @@ router.get("/:id?", async (req, res) => {
     }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", tokenValidation, async (req, res) => {
     try {
         const result = await createProduct(req.body);
 
@@ -28,7 +30,7 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", tokenValidation, async (req, res) => {
     try {
         await updateProduct(req.params.id, req.body);
 
@@ -40,7 +42,7 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", tokenValidation, async (req, res) => {
     try {
         const result = await deleteProduct(req.params.id);
 

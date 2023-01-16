@@ -8,7 +8,7 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 import { FormInput } from "./../../components/FormInput/";
-import { ProductButton } from "../../components/ProductButton";
+
 import axios from "axios";
 
 interface interfacelogin {
@@ -57,10 +57,20 @@ export const Login = () => {
                     password: loginSubmit.password,
                 })
                 .then((res) => {
+                    console.log(res.data);
+                    console.log(res.status);
+                    console.log(res.data.token);
+
                     if (res.status === 200) {
+                        localStorage.setItem("token", res.data.token);
                         localStorage.setItem(
-                            "tokens",
-                            JSON.stringify(res.data.token)
+                            "permission",
+                            JSON.parse(atob(res.data.token.split(".")[1]))["id"]
+                        );
+
+                        console.log(
+                            "permission",
+                            JSON.parse(atob(res.data.token.split(".")[1]))["id"]
                         );
                         navigate("/");
                     }

@@ -97,20 +97,35 @@ export const AddProduct = () => {
         }
 
         if (isValid) {
-            axios
-                .post("http://localhost:3001/products", {
-                    title: productSubmit.title,
-                    brand: productSubmit.brand,
-                    price: productSubmit.price,
-                    color: productSubmit.color,
-                    images: productSubmit.images,
-                })
-                .then((res) => {
-                    navigate("/");
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            if (localStorage.getItem("tokens")) {
+                const token = localStorage.getItem("tokens");
+                if (token) {
+                    axios
+                        .post(
+                            "http://localhost:3001/products",
+                            {
+                                title: productSubmit.title,
+                                brand: productSubmit.brand,
+                                price: productSubmit.price,
+                                color: productSubmit.color,
+                                images: productSubmit.images,
+                            },
+                            { headers: { Authorization: token } }
+                        )
+                        .then((res) => {
+                            navigate("/");
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            localStorage.removeItem("tokens");
+                            navigate("/login");
+                        });
+                } else {
+                    navigate("/login");
+                }
+            }
+        } else {
+            navigate("/login");
         }
     }
 

@@ -25,7 +25,7 @@ const login = async (email, password) => {
                 email,
             },
         });
-        
+
         const isPasswordOk = bcrypt.compareSync(password, result.password);
 
         if (!isPasswordOk) {
@@ -60,12 +60,13 @@ const findUser = async (email = null) => {
     }
 };
 
-const atualizar = async (id, { nome, senha, cpf }) => {
-    const result = await cliente.update(
+const updateUserData = async (id, { first_name, last_name, email, password }) => {
+    const result = await users.update(
         {
-            nome,
-            senha,
-            cpf,
+            first_name,
+            last_name,
+            email,
+            password: await bcrypt.hash(password, 10),
         },
         {
             where: {
@@ -85,4 +86,4 @@ const remover = async (id) => {
     });
 };
 
-module.exports = { signUp, findUser, atualizar, remover, login };
+module.exports = { signUp, findUser, updateUserData, remover, login };

@@ -104,35 +104,54 @@ export const EditProduct = () => {
         }
 
         if (isValid) {
-            axios
-                .put("http://localhost:3001/products/" + id, {
-                    title: productSubmit.title,
-                    brand: productSubmit.brand,
-                    price: productSubmit.price,
-                    color: productSubmit.color,
-                    images: productSubmit.images,
-                })
-                .then((res) => {
-                    navigate("/");
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            if (localStorage.getItem("tokens")) {
+                const token = localStorage.getItem("tokens");
+                if (token) {
+                    axios
+                        .put(
+                            "http://localhost:3001/products/" + id,
+                            {
+                                title: productSubmit.title,
+                                brand: productSubmit.brand,
+                                price: productSubmit.price,
+                                color: productSubmit.color,
+                                images: productSubmit.images,
+                            },
+                            { headers: { Authorization: token } }
+                        )
+                        .then((res) => {
+                            navigate("/");
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            localStorage.removeItem("tokens");
+                            navigate("/login");
+                        });
+                } else {
+                    navigate("/login");
+                }
+            } else {
+                navigate("/login");
+            }
         }
     }
 
     useEffect(() => {
         if (localStorage.getItem("tokens")) {
-            const isValidated = localStorage.getItem("tokens");
-            if (isValidated) {
+            const token = localStorage.getItem("tokens");
+            if (token) {
                 axios
-                    .get("http://localhost:3001/products/" + id)
-                    .then((response) => {
-                        setProduct(response.data);
-                        setColor(response.data.color);
+                    .get("http://localhost:3001/products/" + id, {
+                        headers: { Authorization: token },
+                    })
+                    .then((res) => {
+                        setProduct(res.data);
+                        setColor(res.data.color);
                     })
                     .catch((error) => {
                         console.log(error);
+                        localStorage.removeItem("tokens");
+                        navigate("/login");
                     });
             } else {
                 navigate("/login");

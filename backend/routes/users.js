@@ -8,22 +8,22 @@ const { Router } = require("express");
 const {
     findUser,
     signUp,
-    atualizar,
+    updateUserData,
     remover,
 } = require("../controllers/users");
 
 const { authCreateUser } = require("../middlewares/auth");
+const tokenValidation = require("../middlewares/tokenValidation");
 
 const router = Router();
-/* const verifyToken = require("../middlewares/auth");
-const get = require("../schemas/cliente/get");
+/*const get = require("../schemas/cliente/get");
 const post = require("../schemas/cliente/post");
  */
 
 router.get(
     "/:email?",
-    /*     verifyToken,
-    checkSchema(get),
+    tokenValidation,
+    /*checkSchema(get),
     validation, */
     async (req, res) => {
         try {
@@ -37,7 +37,8 @@ router.get(
 );
 
 router.post(
-    "/" /* checkSchema(post), validation, */,
+    "/",
+    /* checkSchema(post),*/
     authCreateUser,
     async (req, res) => {
         try {
@@ -52,18 +53,18 @@ router.post(
     }
 );
 
-/* router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", tokenValidation, async (req, res) => {
     try {
-        await atualizar(req.params.id, req.body);
-        const result = await buscar(req.params.id);
+        await updateUserData(req.params.id, req.body);
+        //const result = await buscar(req.params.id);
 
-        res.send(result);
+        res.send("Editado");
     } catch (error) {
         res.status(500).send({ mensagem: error.message });
     }
 });
-
-router.delete("/:id", verifyToken, async (req, res) => {
+/*
+router.delete("/:id", tokenValidation, async (req, res) => {
     try {
         await remover(req.params.id);
         res.send("Remover cliente");

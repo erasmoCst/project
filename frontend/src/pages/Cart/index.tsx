@@ -96,16 +96,20 @@ export const Cart = () => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem("tokens")) {
-            const isValidated = localStorage.getItem("tokens");
-            if (isValidated) {
+        if (localStorage.getItem("token")) {
+            const token = localStorage.getItem("token");
+            if (token) {
                 axios
-                    .get("http://localhost:3001/products/" + id)
-                    .then((response) => {
-                        setProduct(response.data);
+                    .get("http://localhost:3001/products/" + id, {
+                        headers: { Authorization: token },
+                    })
+                    .then((res) => {
+                        setProduct(res.data);
                     })
                     .catch((error) => {
                         console.log(error);
+                        localStorage.removeItem("tokens");
+                        navigate("/login");
                     });
             } else {
                 navigate("/login");

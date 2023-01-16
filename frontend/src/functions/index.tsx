@@ -1,5 +1,6 @@
+import { useState } from "react";
 
-export function formatBRL(value?: number | string | null): string {
+export const formatBRL = (value?: number | string | null): string => {
     if (value) {
         let valueUnformatted = parseFloat(value.toString());
         return (
@@ -10,8 +11,13 @@ export function formatBRL(value?: number | string | null): string {
         );
     }
     return "R$0,00";
-}
+};
 
 export const handleExit = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
+    localStorage.removeItem("permission");
+};
+
+export const checkPermission = () => {
+    return localStorage.getItem("permission");
 };

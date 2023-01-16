@@ -13,13 +13,12 @@ import { Card } from "./../../components/Card";
 import { ProductButton } from "../../components/ProductButton";
 import { Footer } from "./../../components/Footer";
 import { checkPermission } from "../../functions";
-import { CardUser } from "../../components/CardUser";
 
 interface interfaceProductsID extends interfaceProducts {
     id: number;
 }
 
-export const Home = () => {
+export const HomeUser = () => {
     const [products, setProducts] = useState<Array<interfaceProductsID>>([]);
     const [modal, setModal] = useState<boolean>(false);
     const [deleteID, setDeleteID] = useState<number>(0);
@@ -75,52 +74,20 @@ export const Home = () => {
             <Container>
                 <br />
                 <div className="row">
-                    <div className="col-2">
+                    <div className="col-md-2">
                         <h2 className="home-title">Produtos</h2>
                     </div>
                     <div className="col-6"></div>
-                    {checkPermission() === "1" ? (
-                        <div className="col-4 center">
-                            <ProductButton
-                                type="button"
-                                title="Adicionar Produto"
-                                to="/adicionar-produto"
-                                icon={AddIcon}
-                            ></ProductButton>
-                        </div>
-                    ) : (
-                        ""
-                    )}
+                    <div className="col-4 home-center">
+                        <ProductButton
+                            type="button"
+                            title="Adicionar Produto"
+                            to="/adicionar-produto"
+                            icon={AddIcon}
+                        ></ProductButton>
+                    </div>
                 </div>
-                {checkPermission() === "1"
-                    ? products.map((product) => (
-                          <Card
-                              key={product.id}
-                              id={product.id}
-                              title={product.title}
-                              brand={product.brand}
-                              price={product.price}
-                              color={product.color}
-                              images={product.images}
-                              modal={modal}
-                              deleteID={deleteID}
-                              deleteTitle={deleteTitle}
-                              handleDelete={handleDelete}
-                              handleClick={handleClick}
-                              handleCancel={handleCancel}
-                          ></Card>
-                      ))
-                    : products.map((product) => (
-                          <CardUser
-                              key={product.id}
-                              id={product.id}
-                              title={product.title}
-                              brand={product.brand}
-                              price={product.price}
-                              color={product.color}
-                              images={product.images}
-                          ></CardUser>
-                      ))}
+               
             </Container>
             <Footer />
         </>
