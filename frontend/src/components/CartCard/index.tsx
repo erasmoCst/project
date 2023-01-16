@@ -22,7 +22,7 @@ export const CartCard = (props: interfaceCart) => {
       <div className="container cart-card-full-row">
         <div className="row" style={{ height: "50%" }}>
           <div className="col-2 center">
-            <img className="w-75" src={props.images} />
+            <img className="w-50" src={props.images} />
           </div>
           <div className="col-6 center-vertical">
             <div>

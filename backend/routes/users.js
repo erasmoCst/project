@@ -22,7 +22,7 @@ const post = require("../schemas/cliente/post");
 
 router.get(
     "/:email?",
-    tokenValidation,
+    /* tokenValidation, */
     /*checkSchema(get),
     validation, */
     async (req, res) => {

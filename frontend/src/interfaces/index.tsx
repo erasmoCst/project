@@ -1,23 +1,12 @@
 /*---------- I N T E R F A C E S ----------*/
 import { Home } from "./../pages/Home";
-import { Login } from "./../pages/Login"
-import { SignUp } from "../pages/SignUp"
+import { Login } from "./../pages/Login";
+import { SignUp } from "../pages/SignUp";
 
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState } from "react";
 
 export const isUserValidated = createContext<boolean>(false);
 
-function Parent() {
-  const [globalValue, setGlobalValue] = useState(false);
-
-  return (
-    <isUserValidated.Provider value={globalValue}>
-      <Home />
-      <Login />
-      <SignUp setGlobalValue={setGlobalValue}/>
-    </isUserValidated.Provider>
-  );
-}
 
 export interface interfaceProducts {
   /* id: number; */
