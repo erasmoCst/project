@@ -30,23 +30,32 @@
     font-size: 90%;
 }
 
+.clean {
+    border: none;
+    background-color: #ffffff;
+}
+
 .form-options-space {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.form-button-submit{
-  background-color: #0f4c81;
-  border: none;
-  border-radius: 7px;
-  color: #ffffff;
-  font-weight: bold;
-  /*  padding: 15px 32px; */
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  min-width: 7em;
-  min-height: 3em;
+.form-button-submit {
+    background-color: #0f4c81;
+    border: none;
+    border-radius: 7px;
+    color: #ffffff;
+    font-weight: bold;
+    /*  padding: 15px 32px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    min-width: 7em;
+    min-height: 3em;
+}
+
+.txt-end {
+    text-align: end;
 }

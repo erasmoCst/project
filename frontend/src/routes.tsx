@@ -13,14 +13,6 @@ import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 
 export const Rotas = () => {
-  const loggedIn = () => {
-    /* console.log(localStorage.getItem("token") ? true : false); */
-    return localStorage.getItem("token") ? true : false;
-  };
-
-  const checkPermission = () => {
-    return localStorage.getItem("permission");
-  };
 
   return (
     <BrowserRouter>

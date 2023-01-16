@@ -1,0 +1,12 @@
+.cart-txt {
+    font-weight: bold;
+    color: #353535;
+}
+
+.cart-card-box{
+    box-sizing: border-box;
+    border: 1px solid #B2B2B2;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+}

@@ -36,7 +36,6 @@ const login = async (email, password) => {
             expiresIn: "24h",
         });
 
-        //return res.status(401).send("E-mail e/ou senha inválidos.");
     } catch (error) {
         throw error;
     }
@@ -49,14 +48,12 @@ const findUser = async (email = null) => {
             if (email === result.email) {
                 return true;
             }
-            /* return true; */
             return result;
         }
 
         return await users.findAll();
     } catch (error) {
         return false;
-        /*  res.status(500).send({ mensagem: error.message }); */
     }
 };
 
@@ -78,7 +75,7 @@ const updateUserData = async (id, { first_name, last_name, email, password }) =>
     return result;
 };
 
-const remover = async (id) => {
+const removeUser = async (id) => {
     return await cliente.destroy({
         where: {
             id,
@@ -86,4 +83,4 @@ const remover = async (id) => {
     });
 };
 
-module.exports = { signUp, findUser, updateUserData, remover, login };
+module.exports = { signUp, findUser, updateUserData, removeUser, login };

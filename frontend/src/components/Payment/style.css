@@ -1,0 +1,15 @@
+.payment-box {
+    margin-bottom: 50px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #039000;
+    border-radius: 7px;
+    color: #039000;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.footer-txt-normal {
+    font-weight: normal;
+}

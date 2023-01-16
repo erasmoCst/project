@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import "./style.css";
 
 import { interfacePayment } from "../../interfaces";
 
 import { formatBRL } from "../../functions";
 
-import { Container, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { IconContext } from "react-icons/lib";
 import { FullSizeButton } from "../FullSizeButton";
 
@@ -40,35 +41,20 @@ export const CartCheckout = (props: interfaceProps) => {
 
     return (
         <>
-            <Container>
-                <Row>
-                    <div
-                        style={{
-                            backgroundColor: "#F5F5F5",
-                            borderRadius: "7px",
-                            color: "#353535",
-                            fontWeight: "bold",
-                        }}
-                    >
+            <div className="container">
+                <div className="row">
+                    <div className="cart-checkout-box">
                         <div className="row">
-                            <Container style={{ marginTop: "1rem" }}>
-                                <Container>
-                                    <div
-                                        className="row"
-                                        style={{
-                                            borderBottom: "1px solid #B2B2B2",
-                                        }}
-                                    >
+                            <div className="container card-chekcout-mt">
+                                <div className="container">
+                                    <div className="row card-checkout-border">
                                         <div className="col-6">
                                             <p>
                                                 Subtotal ({props.qtdy}{" "}
                                                 {itemTxtPlural()}):
                                             </p>
                                         </div>
-                                        <div
-                                            className="col-6"
-                                            style={{ textAlign: "end" }}
-                                        >
+                                        <div className="col-6 txt-end">
                                             <p>
                                                 {formatBRL(
                                                     props.subtotal(
@@ -79,29 +65,17 @@ export const CartCheckout = (props: interfaceProps) => {
                                             </p>
                                         </div>
                                     </div>
-                                </Container>
-                            </Container>
-                            <Container style={{ marginTop: "1rem" }}>
-                                <Container>
-                                    <div
-                                        className="row"
-                                        style={{
-                                            borderBottom: "1px solid #B2B2B2",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            verticalAlign: "middle",
-                                        }}
-                                    >
+                                </div>
+                            </div>
+                            <div className="container card-chekcout-mt">
+                                <div className="container">
+                                    <div className="row card-chekcout-freight ">
                                         <div className="col-6">
                                             <p>
                                                 {" "}
                                                 Frete{" "}
                                                 <button
-                                                    style={{
-                                                        border: "none",
-                                                        backgroundColor:
-                                                            "#F5F5F5",
-                                                    }}
+                                                    className="card-chekcout-button "
                                                     onClick={() => {
                                                         freteInfo();
                                                     }}
@@ -120,10 +94,7 @@ export const CartCheckout = (props: interfaceProps) => {
                                                 ></ModalFrete>
                                             </p>
                                         </div>
-                                        <div
-                                            className="col-6"
-                                            style={{ textAlign: "end" }}
-                                        >
+                                        <div className="col-6 txt-end">
                                             <p>
                                                 {formatBRL(
                                                     props.freight(
@@ -134,28 +105,22 @@ export const CartCheckout = (props: interfaceProps) => {
                                             </p>
                                         </div>
                                     </div>
-                                </Container>
-                            </Container>
-                            <Container style={{ marginTop: "1rem" }}>
-                                <Container>
-                                    <div
-                                        className="row"
-                                        style={{ paddingBottom: "0px" }}
-                                    >
+                                </div>
+                            </div>
+                            <div className="container card-chekcout-mt">
+                                <div className="container">
+                                    <div className="row card-checkout-pbn">
                                         <div className="col-6">
                                             <p> Valor Total </p>
                                         </div>
-                                        <div
-                                            className="col-6"
-                                            style={{ textAlign: "end" }}
-                                        >
+                                        <div className="col-6 txt-end">
                                             <p>{formatBRL(props.totalValue)}</p>
                                         </div>
                                     </div>
-                                </Container>
-                            </Container>
-                            <Container /* style={{ marginTop: "1rem" }} */>
-                                <Container>
+                                </div>
+                            </div>
+                            <div className="container">
+                                <div className="container">
                                     <FullSizeButton
                                         title="PAGAR"
                                         to=""
@@ -167,12 +132,12 @@ export const CartCheckout = (props: interfaceProps) => {
                                         }
                                         paymentCalc={props.paymentCalc}
                                     />
-                                </Container>
-                            </Container>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </Row>
-            </Container>
+                </div>
+            </div>
         </>
     );
 };

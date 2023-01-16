@@ -1,0 +1,30 @@
+.cart-checkout-box {
+    background-color: #f5f5f5;
+    border-radius: 7px;
+    color: #353535;
+    font-weight: bold;
+}
+
+.card-checkout-border {
+    border-bottom: 1px solid #b2b2b2;
+}
+
+.card-chekcout-freight {
+    border-bottom: 1px solid #b2b2b2;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.card-chekcout-mt {
+    margin-top: 1rem;
+}
+
+.card-chekcout-button {
+    border: none;
+    background-color: #f5f5f5;
+}
+
+.card-checkout-pbn {
+    padding-bottom: 0px;
+}
